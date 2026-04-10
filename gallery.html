@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>🌿 Model_Pravet · Street Furniture Catalog</title>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap');
+:root{
+  --bg:#e8eef8; --surface:#ffffff; --surface2:#f0f5ff;
+  --border:rgba(37,99,235,.13);
+  --text:#0f1e3d; --muted:#5a7099;
+  --pink:#93c5fd; --pink2:#dbeafe;
+  --lav:#3b82f6;  --lav2:#dbeafe;
+  --mint:#60a5fa; --mint2:#eff6ff;
+  --sky:#2563eb;  --sky2:#eff6ff;
+  --rad:16px; --rads:10px;
+  --sh:0 2px 16px rgba(37,99,235,.10);
+  --shL:0 8px 40px rgba(37,99,235,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'DM Sans',ui-sans-serif,system-ui,-apple-system,sans-serif;color:var(--text);}
+body{background:var(--bg);overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-thumb{background:#93c5fd;border-radius:99px}
+.app{display:grid;grid-template-columns:280px 1fr;min-height:100vh;}
+
+/* SIDEBAR */
+.sidebar{
+  background:linear-gradient(160deg,#ffffff 0%,#dbeafe 55%,#eff6ff 100%);
+  border-right:1px solid var(--border);
+  position:sticky;top:0;height:100vh;
+  padding:18px 13px;overflow-y:auto;
+  display:flex;flex-direction:column;gap:11px;
+}
+.brand{background:white;border-radius:var(--rad);padding:13px 15px;box-shadow:var(--sh);border:1px solid var(--border);display:flex;align-items:center;gap:11px;}
+.brand-icon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#2563eb,#60a5fa);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.brand h1{font-size:12.5px;font-weight:800;line-height:1.3;}
+.brand small{color:var(--muted);font-size:10.5px;}
+.tabs{display:flex;gap:5px;}
+.tabbtn{flex:1;padding:8px 5px;border-radius:var(--rads);border:1.5px solid var(--border);background:white;color:var(--muted);cursor:pointer;font-weight:700;font-size:11px;transition:all .18s;}
+.tabbtn.active{background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-color:transparent;color:white;box-shadow:0 4px 14px rgba(37,99,235,.35);}
+.tabbtn:hover:not(.active){background:var(--lav2);color:var(--text);}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.kpi{background:white;border-radius:var(--rads);padding:9px 11px;border:1px solid var(--border);box-shadow:0 1px 4px rgba(100,80,180,.06);}
+.kpi .lbl{font-size:9.5px;color:var(--muted);margin-bottom:3px;}
+.kpi .val{font-size:20px;font-weight:900;}
+.search-box{background:white;border-radius:var(--rads);border:1.5px solid var(--border);display:flex;align-items:center;gap:7px;padding:9px 11px;box-shadow:0 1px 4px rgba(100,80,180,.06);}
+.search-box input{width:100%;border:none;outline:none;font-size:12px;color:var(--text);background:transparent;}
+.search-box input::placeholder{color:var(--muted);}
+.nav-list{list-style:none;display:flex;flex-direction:column;gap:2px;}
+.nav-list li a{display:flex;flex-direction:column;gap:3px;padding:7px 9px;border-radius:9px;text-decoration:none;color:var(--text);border:1px solid transparent;transition:all .14s;}
+.nav-list li a:hover{background:white;border-color:var(--border);}
+.nr{display:flex;justify-content:space-between;align-items:center;gap:5px;}
+.nr span{font-size:11px;font-weight:600;}
+.nbar{height:3px;background:var(--lav2);border-radius:99px;overflow:hidden;}
+.nbarf{height:100%;border-radius:99px;background:linear-gradient(90deg,#2563eb,#60a5fa);}
+.pill{font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;background:var(--lav2);color:#1d4ed8;border:1px solid rgba(37,99,235,.2);white-space:nowrap;}
+
+/* MAIN */
+.main{padding:20px 20px 180px;overflow:auto;}
+.topbar{display:flex;gap:12px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px;}
+.titleblock h2{font-size:20px;font-weight:900;}
+.titleblock p{color:var(--muted);font-size:12px;margin-top:4px;}
+.controls{display:flex;gap:8px;flex-wrap:wrap;}
+.btn{padding:9px 15px;border-radius:var(--rads);border:1.5px solid var(--border);background:white;color:var(--text);cursor:pointer;font-weight:700;font-size:12px;box-shadow:var(--sh);transition:all .15s;}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shL);}
+.btn.primary{background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-color:transparent;color:white;box-shadow:0 4px 14px rgba(37,99,235,.30);}
+
+/* PANEL */
+.panel{background:var(--surface);border-radius:var(--rad);border:1px solid var(--border);box-shadow:var(--sh);overflow:hidden;margin-bottom:14px;}
+.panel-hd{padding:12px 15px;display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid var(--border);}
+.panel-hd-l{display:flex;align-items:center;gap:10px;}
+.cbadge{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:white;flex-shrink:0;}
+.panel-hd strong{font-size:13px;font-weight:800;}
+.panel-body{padding:13px;}
+
+/* GRID + CARD */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:11px;}
+.card{background:var(--surface2);border-radius:var(--rad);border:1.5px solid var(--border);overflow:hidden;display:flex;flex-direction:column;transition:all .2s;box-shadow:0 1px 5px rgba(100,80,180,.06);}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shL);border-color:#3b82f6;}
+.thumb{position:relative;aspect-ratio:4/3;background:linear-gradient(135deg,#eff6ff,#dbeafe);}
+model-viewer{width:100%;height:100%;display:block;background:transparent;opacity:0;transition:opacity .4s;}
+.mv-sk{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);}
+.spin{width:30px;height:30px;border:2.5px solid rgba(37,99,235,.20);border-top-color:#3b82f6;border-radius:50%;animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.mv-sk span{font-size:9.5px;color:var(--muted);}
+.fallback{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;gap:4px;background:linear-gradient(135deg,#fff5f5,#fff0f6);}
+.fallback .fi{font-size:22px;}
+.fallback .ft{font-size:11px;color:var(--muted);}
+.fallback .fu{font-size:8px;color:#ccc;word-break:break-all;line-height:1.3;}
+.card-body{padding:10px 11px 11px;display:flex;flex-direction:column;gap:5px;flex:1;}
+.card-name{font-size:12px;font-weight:800;line-height:1.35;}
+.card-path{font-size:9px;color:var(--muted);word-break:break-word;line-height:1.3;}
+.urow{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;}
+.urow span{color:var(--muted);}
+.urow b{font-weight:800;}
+.ubar{height:5px;border-radius:99px;background:var(--lav2);overflow:hidden;}
+.ubarf{height:100%;border-radius:99px;background:linear-gradient(90deg,#2563eb,#60a5fa);}
+.spacer{flex:1;}
+.sel-btn{width:100%;padding:8px;border-radius:9px;border:1.5px solid rgba(37,99,235,.22);background:linear-gradient(135deg,var(--lav2),var(--sky2));color:#1d4ed8;cursor:pointer;font-weight:800;font-size:11px;transition:all .15s;}
+.sel-btn:hover{background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:white;border-color:transparent;box-shadow:0 4px 14px rgba(37,99,235,.30);}
+
+/* NETWORK */
+.net-wrap{display:none;height:calc(100vh - 140px);min-height:460px;}
+canvas{width:100%;height:100%;display:block;background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:var(--rad);border:1px solid var(--border);}
+.tooltip{position:fixed;pointer-events:none;z-index:9999;background:white;border:1.5px solid #3b82f6;color:var(--text);padding:8px 11px;border-radius:var(--rads);font-size:12px;max-width:200px;display:none;box-shadow:var(--shL);}
+
+/* CATEGORY COLOR PALETTE */
+.c1{background:linear-gradient(135deg,#a78bfa,#c4b5fd);}
+.c2{background:linear-gradient(135deg,#f472b6,#f9a8d4);}
+.c3{background:linear-gradient(135deg,#34d399,#6ee7b7);}
+.c4{background:linear-gradient(135deg,#fb923c,#fca5a5);}
+.c5{background:linear-gradient(135deg,#38bdf8,#7dd3fc);}
+.c6{background:linear-gradient(135deg,#a3e635,#bef264);}
+.c7{background:linear-gradient(135deg,#fbbf24,#fde68a);}
+.c8{background:linear-gradient(135deg,#e879f9,#f0abfc);}
+.c9{background:linear-gradient(135deg,#2dd4bf,#5eead4);}
+.c10{background:linear-gradient(135deg,#f87171,#fca5a5);}
+.c11{background:linear-gradient(135deg,#60a5fa,#93c5fd);}
+.c12{background:linear-gradient(135deg,#4ade80,#86efac);}
+.c13{background:linear-gradient(135deg,#f59e0b,#fcd34d);}
+.c14{background:linear-gradient(135deg,#10b981,#34d399);}
+.c15{background:linear-gradient(135deg,#ef4444,#f87171);}
+.c16{background:linear-gradient(135deg,#6366f1,#818cf8);}
+.c17{background:linear-gradient(135deg,#ec4899,#f472b6);}
+
+@media(max-width:860px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto;max-height:280px;}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-icon">🌿</div>
+    <div><h1>Street Furniture Catalog</h1><small>Model_Pravet · 100 Participants</small></div>
+  </div>
+  <div class="tabs">
+    <button class="tabbtn active" id="tabCatalog">📦 Catalog</button>
+    <button class="tabbtn" id="tabDash">📊 Dashboard</button>
+    <button class="tabbtn" id="tabNet">🔗 Network</button>
+  </div>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="lbl">👥 Participants</div><div class="val" id="kpiP">100</div></div>
+    <div class="kpi"><div class="lbl">✅ Selections</div><div class="val" id="kpiS">—</div></div>
+    <div class="kpi"><div class="lbl">📁 Categories</div><div class="val">17</div></div>
+    <div class="kpi"><div class="lbl">🧩 Models</div><div class="val" id="kpiM">—</div></div>
+  </div>
+  <div class="search-box">
+    <span>🔍</span>
+    <input id="searchInput" placeholder="Search… e.g. Chair, Lighting"/>
+  </div>
+  <ul class="nav-list" id="navList"></ul>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="titleblock">
+      <h2>🌳 Street Furniture · Pravet Park</h2>
+      <p>GLB models from Supabase · Model_Pravet · Rotate / Zoom / Select · lazy-load</p>
+    </div>
+    <div class="controls">
+      <button class="btn" id="btnRegen">🎲 Randomize Data</button>
+      <button class="btn primary" id="btnCSV">📥 Export CSV</button>
+    </div>
+  </div>
+  <section id="catalogWrap"></section>
+  <section id="dashWrap" style="display:none;"></section>
+  <section class="panel net-wrap" id="networkWrap">
+    <div class="panel-hd">
+      <strong>🔗 Category Co-selection Network</strong>
+      <span class="pill">node · edge = co-selected</span>
+    </div>
+    <div class="panel-body" style="height:calc(100% - 50px);">
+      <canvas id="netCanvas"></canvas>
+    </div>
+  </section>
+  <div class="tooltip" id="tip"></div>
+</main>
+</div>
+
+<script>
+const CATALOG = [
+  {id:"01",name:"Chairs",folder:"01 Chair",color:"c1",emoji:"🪑",items:[
+    {name:"Low-profile outdoor bench",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/01%20Chair/A/1.glb"},
+    {name:"Small-scale stadium/grandstand seating",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/01%20Chair/B/1.glb"},
+    {name:"Chair with backrest and armrests",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/01%20Chair/C/1.glb"},
+    {name:"Circular tree bench",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/01%20Chair/D/1.glb"},
+    {name:"Recliner/Outdoor lounge chair",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/01%20Chair/E/1.glb"},
+  ]},
+  {id:"02",name:"Tables",folder:"02 Tables",color:"c2",emoji:"🪵",items:[
+    {name:"Picnic table with benches",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/02%20Tables/Table%20-%20Picnic%20table%20with%20benches/1.glb"},
+    {name:"Standing bar table/High table along running paths",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/02%20Tables/Table%20-%20Standing%20bar%20table%20High%20table%20along%20running%20paths/1.glb"},
+    {name:"Chess/Board game table",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/02%20Tables/Table%20-%20Chess%20Board%20game%20table/1.glb"},
+    {name:"Outdoor workstation",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/02%20Tables/Table%20-%20Outdoor%20workstation/1.glb"},
+  ]},
+  {id:"03",name:"Exercise Equipment",folder:"03 Exercise Equipment",color:"c3",emoji:"🏋️",items:[
+    {name:"Stretching/Cool-down station",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/03%20Exercise%20Equipment/Stretching%20Cool-down%20station/1.glb"},
+    {name:"Bodyweight resistance training equipment",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/03%20Exercise%20Equipment/Bodyweight%20resistance%20training%20equipment/1.glb"},
+    {name:"Outdoor cardio equipment",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/03%20Exercise%20Equipment/Outdoor%20cardio%20equipment/1.glb"},
+    {name:"Balance training station (for seniors)",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/03%20Exercise%20Equipment/Balance%20training%20station%20for%20seniors/1.glb"},
+    {name:"Outdoor dumbbell weight zone",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/03%20Exercise%20Equipment/Outdoor%20dumbbell%20weight%20zone/1.glb"},
+  ]},
+  {id:"04",name:"Playground Equipment",folder:"04 Playground Equipment",color:"c4",emoji:"🛝",items:[
+    {name:"Climbing frame/Climbing wall",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/04%20Playground%20Equipment/Climbing%20frame%20Climbing%20wall/1.glb"},
+    {name:"Slide–Tower–Bridge play structure",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/04%20Playground%20Equipment/Slide-Tower-Bridge%20play%20structure/1.glb"},
+    {name:"Safety swing set",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/04%20Playground%20Equipment/Safety%20swing%20set/1.glb"},
+    {name:"Mist/Spray water play feature",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/04%20Playground%20Equipment/Mist%20Spray%20water%20play%20feature/1.glb"},
+    {name:"Creative play zone (Sand/Nature-based)",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/04%20Playground%20Equipment/Creative%20play%20zone%20Sand%20Nature-based/1.glb"},
+  ]},
+  {id:"05",name:"CCTV Cameras",folder:"05 CCTV Cameras",color:"c5",emoji:"📷",items:[
+    {name:"Park entrance/exit camera",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/05%20CCTV%20Cameras/Park%20entrance%20exit%20camera/1.glb"},
+    {name:"Sports field and grandstand camera",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/05%20CCTV%20Cameras/Sports%20field%20and%20grandstand%20camera/1.glb"},
+    {name:"Camera along running paths and blind spots",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/05%20CCTV%20Cameras/Camera%20along%20running%20paths%20and%20blind%20spots/1.glb"},
+    {name:"Camera near ponds/high-risk areas",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/05%20CCTV%20Cameras/Camera%20near%20ponds%20high-risk%20areas/1.glb"},
+  ]},
+  {id:"06",name:"Public Water Dispensers",folder:"06 Public Water Dispensers",color:"c6",emoji:"💧",items:[
+    {name:"Drinking water with bottle-filling station",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/06%20Public%20Water%20Dispensers/Drinking%20water%20with%20bottle-filling%20station/1.glb"},
+    {name:"Wheelchair-accessible water dispenser",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/06%20Public%20Water%20Dispensers/Wheelchair-accessible%20water%20dispenser/1.glb"},
+    {name:"Water/hand-washing point near playground",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/06%20Public%20Water%20Dispensers/Water%20hand-washing%20point%20near%20playground/1.glb"},
+    {name:"Water point for pets",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/06%20Public%20Water%20Dispensers/Water%20point%20for%20pets/1.glb"},
+  ]},
+  {id:"07",name:"Lighting",folder:"07 Lighting",color:"c7",emoji:"💡",items:[
+    {name:"General pathway lighting",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/07%20Lighting/General%20pathway%20lighting/1.glb"},
+    {name:"Sports field floodlights",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/07%20Lighting/Sports%20field%20floodlights/1.glb"},
+    {name:"Ambient lighting (pond/wooden walkway)",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/07%20Lighting/Ambient%20lighting%20pond%20wooden%20walkway/1.glb"},
+    {name:"Smart solar lighting",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/07%20Lighting/Smart%20solar%20lighting/1.glb"},
+  ]},
+  {id:"08",name:"Rain Shelters/Roof Structures",folder:"08 Rain Shelters Roof Structures",color:"c8",emoji:"⛺",items:[
+    {name:"Open-air sun/rain pavilion",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/08%20Rain%20Shelters%20Roof%20Structures/Open-air%20sun%20rain%20pavilion/1.glb"},
+    {name:"Pergola with climbing plants",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/08%20Rain%20Shelters%20Roof%20Structures/Pergola%20with%20climbing%20plants/1.glb"},
+    {name:"Sheltered spectator seating",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/08%20Rain%20Shelters%20Roof%20Structures/Sheltered%20spectator%20seating/1.glb"},
+    {name:"Waiting/Meeting kiosk",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/08%20Rain%20Shelters%20Roof%20Structures/Waiting%20Meeting%20kiosk/1.glb"},
+  ]},
+  {id:"09",name:"Public Lockers",folder:"09 Public Lockers",color:"c9",emoji:"🔒",items:[
+    {name:"Lockers for runners/athletes",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/09%20Public%20Lockers/Lockers%20for%20runners%20athletes/1.glb"},
+    {name:"Storage lockers for urban events",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/09%20Public%20Lockers/Storage%20lockers%20for%20urban%20events/1.glb"},
+    {name:"Lockers for loaner equipment",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/09%20Public%20Lockers/Lockers%20for%20loaner%20equipment/1.glb"},
+  ]},
+  {id:"10",name:"AED Defibrillators",folder:"10 AED Defibrillators",color:"c10",emoji:"❤️‍🩹",items:[
+    {name:"AED station (Park Center)",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/10%20AED%20Defibrillators/AED%20station%20Park%20Center/1.glb"},
+    {name:"AED station (Sports Zone)",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/10%20AED%20Defibrillators/AED%20station%20Sports%20Zone/1.glb"},
+    {name:"AED station (Near long-distance running track)",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/10%20AED%20Defibrillators/AED%20station%20Near%20long-distance%20running%20track/1.glb"},
+  ]},
+  {id:"11",name:"Waste Disposal Points",folder:"11 Waste Disposal Points",color:"c11",emoji:"♻️",items:[
+    {name:"Recycling bins (Waste separation)",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/11%20Waste%20Disposal%20Points/Recycling%20bins%20Waste%20separation/1.glb"},
+    {name:"Pathway waste bins (Sub-stations)",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/11%20Waste%20Disposal%20Points/Pathway%20waste%20bins%20Sub-stations/1.glb"},
+    {name:"Pet waste bins",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/11%20Waste%20Disposal%20Points/Pet%20waste%20bins/1.glb"},
+  ]},
+  {id:"12",name:"Public Address Speakers",folder:"12 Public Address Speakers",color:"c12",emoji:"📢",items:[
+    {name:"Park-wide emergency announcement system",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/12%20Public%20Address%20Speakers/Park-wide%20emergency%20announcement%20system/1.glb"},
+    {name:"Speakers (Sports & Activity Zones)",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/12%20Public%20Address%20Speakers/Park-wide%20emergency%20announcement%20system/1.glb"},
+    {name:"Ambient music speakers (Relaxation Zones)",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/12%20Public%20Address%20Speakers/Ambient%20music%20speakers%20Relaxation%20Zones/1.glb"},
+    {name:"Bilingual Announcement/Park Information Points",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/12%20Public%20Address%20Speakers/Bilingual%20Announcement%20Park%20Information%20Points/1.glb"},
+  ]},
+  {id:"13",name:"Signage and Wayfinding",folder:"13 Signage and Wayfinding Systems",color:"c13",emoji:"🗺️",items:[
+    {name:"Integrated Park Map Signage",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/13%20Signage%20and%20Wayfinding%20Systems/Integrated%20Park%20Map%20Signage/Meshy_AI_a_Main_park_map_sign_0322013436_generate.glb"},
+    {name:"Post-mounted Directional Signage",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/13%20Signage%20and%20Wayfinding%20Systems/Post-mounted%20Directional%20Signage/1.glb"},
+    {name:"Running Track Distance Markers",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/13%20Signage%20and%20Wayfinding%20Systems/Post-mounted%20Directional%20Signage/1.glb"},
+    {name:"Area/Facility Usage Rules Signage",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/13%20Signage%20and%20Wayfinding%20Systems/Area%20Facility%20Usage%20Rules%20Signage/1.glb"},
+    {name:"Pond-side Hazard Warning Signage",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/13%20Signage%20and%20Wayfinding%20Systems/Pond-side%20Hazard%20Warning%20Signage/1.glb"},
+  ]},
+  {id:"14",name:"Shade, Trees & Functional Landscape",folder:"14 Shade Trees Functional Landscape",color:"c14",emoji:"🌳",items:[
+    {name:"Shade-providing Tree Lines along Running Paths",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/14%20Shade%20Trees%20Functional%20Landscape/Shade-providing%20Tree%20Lines%20along%20Running%20Paths/1.glb"},
+    {name:"Low Shrub Beds",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/14%20Shade%20Trees%20Functional%20Landscape/Low%20Shrub%20Beds/1.glb"},
+    {name:"Functional Lawn Areas with Shade",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/14%20Shade%20Trees%20Functional%20Landscape/Functional%20Lawn%20Areas%20with%20Shade/1.glb"},
+    {name:"Lightweight Sunshade Structures",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/14%20Shade%20Trees%20Functional%20Landscape/Lightweight%20Sunshade%20Structures/1.glb"},
+  ]},
+  {id:"15",name:"Safety and Assistance",folder:"15 Safety and Assistance",color:"c15",emoji:"🆘",items:[
+    {name:"SOS Emergency Posts with Lights and Signals",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/15%20Safety%20and%20Assistance/Guardrails%20and%20Non-slip%20Edges%20along%20Ponds/1.glb"},
+    {name:"Basic First Aid Stations",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/15%20Safety%20and%20Assistance/Basic%20First%20Aid%20Stations/1.glb"},
+    {name:"Zone Code/Park Coordinate Signage for Reporting Incidents",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/15%20Safety%20and%20Assistance/Zone%20Code%20Park%20Coordinate%20Signage%20for%20Reporting%20Incidents/1.glb"},
+    {name:"Guardrails and Non-slip Edges along Ponds",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/15%20Safety%20and%20Assistance/Guardrails%20and%20Non-slip%20Edges%20along%20Ponds/1.glb"},
+    {name:"Staff Stations/Service Communication Booths",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/15%20Safety%20and%20Assistance/Staff%20Stations%20Service%20Communication%20Kiosks/1.glb"},
+  ]},
+  {id:"16",name:"Bicycle & Micromobility",folder:"16 Bicycle and Micromobility Management",color:"c16",emoji:"🚲",items:[
+    {name:"U-Rack Bicycle Parking",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/16%20Bicycle%20and%20Micromobility%20Management/U-Rack%20Bicycle%20Parking/1.glb"},
+    {name:"Organized Scooter/Micromobility Parking Zones",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/16%20Bicycle%20and%20Micromobility%20Management/Organized%20Scooter%20Micromobility%20Parking%20Zones/1.glb"},
+    {name:"Bicycle Repair Stations with Air Pumps",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/16%20Bicycle%20and%20Micromobility%20Management/Bicycle%20Repair%20Stations%20with%20Air%20Pumps/1.glb"},
+    {name:"Speed Calming Measures",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/16%20Bicycle%20and%20Micromobility%20Management/Speed%20Calming%20Measures/1.glb"},
+  ]},
+  {id:"17",name:"Public Restrooms",folder:"17 Public Restrooms",color:"c17",emoji:"🚻",items:[
+    {name:"Small, Gender-separated Restroom Units (Individual Stalls)",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/17%20Public%20Restrooms/Small%20Gender-separated%20Single-stall%20Restrooms/1.glb"},
+    {name:"Medium-sized, Gender-separated Restrooms (2 Stalls per Gender)",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/17%20Public%20Restrooms/Medium-sized%20Gender-separated%20Restrooms%202%20Stalls%20per%20Gender/1.glb"},
+    {name:"Large Restroom Facilities with Showers",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/17%20Public%20Restrooms/Large%20Restroom%20Facilities%20with%20Showers/1.glb"},
+    {name:"Exterior Hand and Foot Washing Stations",url:"https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/17%20Public%20Restrooms/Exterior%20Hand%20and%20Foot%20Washing%20Stations/1.glb"},
+  ]},
+];
+
+const TOTAL_MODELS=CATALOG.reduce((s,c)=>s+c.items.length,0);
+document.getElementById("kpiM").textContent=TOTAL_MODELS;
+
+/* MOCK DATA */
+const PARTICIPANTS=100;
+function ri(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+function wPick(){
+  const w=CATALOG.map((_,i)=>1/Math.pow(i+1,0.55));
+  const t=w.reduce((a,b)=>a+b,0);let r=Math.random()*t;
+  for(let i=0;i<w.length;i++){r-=w[i];if(r<=0)return i;}
+  return CATALOG.length-1;
+}
+let selections=[],catCounts=new Map(),modelCounts=new Map(),coMatrix=new Map();
+function resetStats(){selections=[];catCounts=new Map(CATALOG.map(c=>[c.id,0]));modelCounts=new Map();coMatrix=new Map();}
+function addCo(a,b){if(a===b)return;const k=a<b?`${a}|${b}`:`${b}|${a}`;coMatrix.set(k,(coMatrix.get(k)||0)+1);}
+function generateMock(){
+  resetStats();
+  for(let p=1;p<=PARTICIPANTS;p++){
+    const k=ri(2,5);const chosen=new Set();
+    while(chosen.size<k)chosen.add(wPick());
+    const arr=[...chosen];
+    for(let i=0;i<arr.length;i++)for(let j=i+1;j<arr.length;j++)addCo(CATALOG[arr[i]].id,CATALOG[arr[j]].id);
+    for(const idx of arr){
+      const cat=CATALOG[idx];const item=cat.items[ri(0,cat.items.length-1)];
+      const mk=`${cat.id}/${item.name}`;const qty=ri(1,4);
+      selections.push({pid:`P${String(p).padStart(3,"0")}`,catId:cat.id,catName:cat.name,item:item.name,url:item.url,mk,qty});
+      catCounts.set(cat.id,(catCounts.get(cat.id)||0)+qty);
+      modelCounts.set(mk,(modelCounts.get(mk)||0)+qty);
+    }
+  }
+  document.getElementById("kpiS").textContent=selections.reduce((s,r)=>s+r.qty,0);
+}
+
+/* LAZY LOAD */
+const mvObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const mv=e.target;
+    if(mv.dataset.src&&!mv.getAttribute("src"))mv.setAttribute("src",mv.dataset.src);
+    mvObs.unobserve(mv);
+  });
+},{rootMargin:"250px"});
+
+/* NAV */
+function buildNav(q=""){
+  const el=document.getElementById("navList");el.innerHTML="";
+  const f=q.trim().toLowerCase();
+  const max=Math.max(...CATALOG.map(c=>catCounts.get(c.id)||0),1);
+  CATALOG.forEach(cat=>{
+    if(f&&!cat.name.toLowerCase().includes(f)&&!cat.id.includes(f))return;
+    const cnt=catCounts.get(cat.id)||0;
+    const pct=Math.round(cnt/max*100);
+    const li=document.createElement("li");
+    li.innerHTML=`<a href="#cat-${cat.id}" style="display:flex;flex-direction:column;gap:3px;padding:7px 9px;border-radius:9px;border:1px solid transparent;text-decoration:none;color:inherit;transition:all .14s;">
+      <div class="nr"><span>${cat.emoji} ${cat.id} · ${cat.name}</span><span class="pill">${cnt}</span></div>
+      <div class="nbar"><div class="nbarf" style="width:${pct}%"></div></div>
+    </a>`;
+    const a=li.querySelector("a");
+    a.addEventListener("mouseover",()=>{a.style.background="white";a.style.borderColor="var(--border)";});
+    a.addEventListener("mouseout",()=>{a.style.background="";a.style.borderColor="transparent";});
+    el.appendChild(li);
+  });
+}
+
+/* CATALOG */
+function buildCatalog(q=""){
+  const wrap=document.getElementById("catalogWrap");wrap.innerHTML="";
+  const f=q.trim().toLowerCase();
+  CATALOG.forEach(cat=>{
+    if(f&&!cat.name.toLowerCase().includes(f)&&!cat.id.includes(f))return;
+    const maxM=Math.max(...cat.items.map(it=>modelCounts.get(`${cat.id}/${it.name}`)||0),1);
+    const totalCat=catCounts.get(cat.id)||0;
+    const sec=document.createElement("section");sec.className="panel";sec.id=`cat-${cat.id}`;
+    const hd=document.createElement("div");hd.className="panel-hd";
+    hd.innerHTML=`
+      <div class="panel-hd-l">
+        <div class="cbadge ${cat.color}">${cat.emoji}</div>
+        <div><strong>${cat.id} · ${cat.name}</strong>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:1px;">${cat.items.length} variants</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:7px;">
+        <span style="font-size:10.5px;color:var(--muted)">Total Usage</span>
+        <span class="pill" style="font-size:13px;font-weight:900;">${totalCat}</span>
+      </div>`;
+    sec.appendChild(hd);
+    const bd=document.createElement("div");bd.className="panel-body";
+    const grid=document.createElement("div");grid.className="grid";
+    cat.items.forEach(item=>{
+      const mk=`${cat.id}/${item.name}`;
+      const cnt=modelCounts.get(mk)||0;
+      const pct=Math.round(cnt/maxM*100);
+      const shortPath=item.url.replace("https://edhwbkcmxgisqnznryhp.supabase.co/storage/v1/object/public/Model_Pravet/","");
+      const card=document.createElement("div");card.className="card";
+      card.innerHTML=`
+        <div class="thumb">
+          <div class="mv-sk"><div class="spin"></div><span>Loading…</span></div>
+          <model-viewer data-src="${item.url}" camera-controls auto-rotate rotation-per-second="18deg"
+            shadow-intensity="0.6" exposure="1.1" alt="${item.name}"
+            style="opacity:0;transition:opacity .4s;width:100%;height:100%;display:block;background:transparent;">
+          </model-viewer>
+          <div class="fallback">
+            <span class="fi">📦</span>
+            <span class="ft">Model unavailable</span>
+            <span class="fu">${decodeURIComponent(shortPath)}</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">${item.name}</div>
+          <div class="card-path">${decodeURIComponent(shortPath)}</div>
+          <div class="urow"><span>Usage count</span><b>${cnt}</b></div>
+          <div class="ubar"><div class="ubarf" style="width:${pct}%"></div></div>
+          <div class="spacer"></div>
+          <button class="sel-btn">＋ Select (simulate)</button>
+        </div>`;
+      const mv=card.querySelector("model-viewer");
+      const sk=card.querySelector(".mv-sk");
+      const fb=card.querySelector(".fallback");
+      mv.addEventListener("load",()=>{mv.style.opacity="1";sk.style.display="none";});
+      mv.addEventListener("error",()=>{mv.style.display="none";sk.style.display="none";fb.style.display="flex";});
+      mvObs.observe(mv);
+      card.querySelector(".sel-btn").addEventListener("click",()=>{
+        selections.push({pid:"LIVE",catId:cat.id,catName:cat.name,item:item.name,url:item.url,mk,qty:1});
+        catCounts.set(cat.id,(catCounts.get(cat.id)||0)+1);
+        modelCounts.set(mk,(modelCounts.get(mk)||0)+1);
+        refreshAll(document.getElementById("searchInput").value);
+      });
+      grid.appendChild(card);
+    });
+    bd.appendChild(grid);sec.appendChild(bd);wrap.appendChild(sec);
+  });
+}
+
+/* DASHBOARD */
+function buildDash(){
+  const wrap=document.getElementById("dashWrap");wrap.innerHTML="";
+  const totalSel=selections.reduce((s,r)=>s+r.qty,0);
+  const topCat=CATALOG.reduce((a,b)=>(catCounts.get(a.id)||0)>=(catCounts.get(b.id)||0)?a:b);
+  const allMK=[...modelCounts.entries()].sort((a,b)=>b[1]-a[1]);
+  const topMK=allMK[0]||["—",0];
+
+  const krow=document.createElement("div");
+  krow.style.cssText="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;";
+  [
+    ["🎯 Total Selections",totalSel,"times","linear-gradient(135deg,#1d4ed8,#3b82f6)"],
+    ["🏆 Top Category",`${topCat.emoji} ${topCat.name}`,"","linear-gradient(135deg,#0369a1,#38bdf8)"],
+    ["⭐ Top Model",topMK[0].split("/").slice(1).join(" "),`${topMK[1]} times`,"linear-gradient(135deg,#0284c7,#7dd3fc)"],
+    ["👥 Participants",PARTICIPANTS,"people","linear-gradient(135deg,#1e40af,#60a5fa)"],
+  ].forEach(([lbl,val,unit,bg])=>{
+    const d=document.createElement("div");
+    d.style.cssText=`border-radius:var(--rad);padding:16px;box-shadow:var(--sh);background:${bg};color:white;`;
+    d.innerHTML=`<div style="font-size:11px;opacity:.85;margin-bottom:5px;">${lbl}</div>
+      <div style="font-size:20px;font-weight:900;line-height:1.1;">${val}</div>
+      ${unit?`<div style="font-size:10px;opacity:.7;margin-top:2px;">${unit}</div>`:""}`;
+    krow.appendChild(d);
+  });
+  wrap.appendChild(krow);
+
+  const bp=document.createElement("div");bp.className="panel";bp.style.marginBottom="14px";
+  const max=Math.max(...CATALOG.map(c=>catCounts.get(c.id)||0),1);
+  let rows=`<div class="panel-hd"><strong>📊 Usage per Category</strong><span class="pill">100 Participants</span></div><div class="panel-body" style="display:flex;flex-direction:column;gap:7px;">`;
+  CATALOG.forEach(cat=>{
+    const cnt=catCounts.get(cat.id)||0;const pct=Math.round(cnt/max*100);
+    rows+=`<div style="display:grid;grid-template-columns:32px 160px 1fr 38px;align-items:center;gap:8px;">
+      <span style="font-size:15px;text-align:center;">${cat.emoji}</span>
+      <span style="font-size:11px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${cat.name}">${cat.id} ${cat.name}</span>
+      <div style="height:16px;background:var(--lav2);border-radius:99px;overflow:hidden;position:relative;">
+        <div style="position:absolute;left:0;top:0;height:100%;width:${pct}%;border-radius:99px;background:linear-gradient(90deg,#2563eb,#60a5fa);transition:width .4s;"></div>
+      </div>
+      <span style="font-size:13px;font-weight:900;text-align:right;">${cnt}</span>
+    </div>`;
+  });
+  rows+="</div>";bp.innerHTML=rows;wrap.appendChild(bp);
+
+  const tp=document.createElement("div");tp.className="panel";
+  tp.innerHTML=`<div class="panel-hd"><strong>🥇 Top Item per Category</strong><span class="pill">Top item</span></div>`;
+  const tg=document.createElement("div");
+  tg.style.cssText="padding:13px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:9px;";
+  CATALOG.forEach(cat=>{
+    const sorted=cat.items.map(it=>({name:it.name,cnt:modelCounts.get(`${cat.id}/${it.name}`)||0})).sort((a,b)=>b.cnt-a.cnt);
+    const best=sorted[0];const total=sorted.reduce((s,e)=>s+e.cnt,0)||1;
+    const cd=document.createElement("div");
+    cd.style.cssText="border-radius:11px;padding:11px;border:1px solid var(--border);background:var(--surface2);";
+    cd.innerHTML=`
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;">
+        <div class="cbadge ${cat.color}" style="width:26px;height:26px;font-size:12px;border-radius:7px;">${cat.emoji}</div>
+        <div style="font-size:9.5px;color:var(--muted);font-weight:600;">${cat.id} · ${cat.name}</div>
+      </div>
+      <div style="font-size:11.5px;font-weight:800;margin-bottom:4px;line-height:1.3;">${best.name}</div>
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:4px;">
+        <span>Usage</span><span style="color:var(--text);font-weight:700;">${best.cnt} (${Math.round(best.cnt/total*100)}%)</span>
+      </div>
+      <div style="display:flex;gap:2px;height:4px;">
+        ${sorted.map(e=>`<div style="flex:${e.cnt||0.2};height:100%;border-radius:99px;background:${e.name===best.name?"var(--lav)":"var(--lav2)"};"></div>`).join("")}
+      </div>`;
+    tg.appendChild(cd);
+  });
+  tp.appendChild(tg);wrap.appendChild(tp);
+}
+
+/* NETWORK */
+const netCanvas=document.getElementById("netCanvas");
+const tip=document.getElementById("tip");
+let net={nodes:[],edges:[]};
+function buildNet(){
+  const max=Math.max(...CATALOG.map(c=>catCounts.get(c.id)||0),1);
+  net.nodes=CATALOG.map((cat,i)=>{
+    const a=(i/CATALOG.length)*Math.PI*2;const v=catCounts.get(cat.id)||0;
+    return{id:cat.id,label:`${cat.emoji} ${cat.name}`,value:v,r:5+16*(v/max),a,x:0,y:0};
+  });
+  const edges=[];
+  for(const[k,v] of coMatrix.entries()){const[a,b]=k.split("|");edges.push({a,b,w:v});}
+  edges.sort((e1,e2)=>e2.w-e1.w);net.edges=edges.slice(0,70);
+}
+function resizeCv(){
+  const dpr=Math.max(1,devicePixelRatio||1);const r=netCanvas.getBoundingClientRect();
+  netCanvas.width=Math.floor(r.width*dpr);netCanvas.height=Math.floor(r.height*dpr);
+}
+function drawNet(){
+  const ctx=netCanvas.getContext("2d");const dpr=Math.max(1,devicePixelRatio||1);
+  const w=netCanvas.width/dpr,h=netCanvas.height/dpr;
+  ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+  const cx=w/2,cy=h/2,R=Math.min(w,h)*0.36;
+  net.nodes.forEach(n=>{n.x=cx+Math.cos(n.a)*R;n.y=cy+Math.sin(n.a)*R;});
+  const maxW=Math.max(...net.edges.map(e=>e.w),1);
+  net.edges.forEach(e=>{
+    const na=net.nodes.find(n=>n.id===e.a),nb=net.nodes.find(n=>n.id===e.b);
+    if(!na||!nb)return;
+    ctx.beginPath();
+    ctx.strokeStyle=`rgba(59,130,246,${0.12+0.5*(e.w/maxW)})`;
+    ctx.lineWidth=0.7+1.8*(e.w/maxW);
+    const mx=(na.x+nb.x)/2,my=(na.y+nb.y)/2;
+    const dx=mx-cx,dy=my-cy;
+    ctx.moveTo(na.x,na.y);ctx.quadraticCurveTo(mx+dx*.2,my+dy*.2,nb.x,nb.y);ctx.stroke();
+  });
+  net.nodes.forEach(n=>{
+    const g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r);
+    g.addColorStop(0,"rgba(59,130,246,.75)");g.addColorStop(1,"rgba(147,197,253,.45)");
+    ctx.beginPath();ctx.fillStyle=g;ctx.strokeStyle="rgba(29,78,216,.50)";ctx.lineWidth=1.5;
+    ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fill();ctx.stroke();
+    ctx.fillStyle="rgba(15,30,61,.85)";ctx.font=`600 10px system-ui,sans-serif`;
+    const left=Math.cos(n.a)>=0;
+    ctx.textAlign=left?"left":"right";ctx.textBaseline="middle";
+    ctx.fillText(n.label,n.x+(left?n.r+5:-(n.r+5)),n.y);
+  });
+  ctx.fillStyle="rgba(15,30,61,.70)";ctx.font="700 12px system-ui,sans-serif";
+  ctx.textAlign="center";ctx.textBaseline="middle";
+  ctx.fillText("🔗 Category Co-selection Network",cx,cy);
+}
+function hitNode(mx,my){for(const n of net.nodes){const dx=mx-n.x,dy=my-n.y;if(Math.sqrt(dx*dx+dy*dy)<=n.r+2)return n;}return null;}
+netCanvas.addEventListener("mousemove",ev=>{
+  const r=netCanvas.getBoundingClientRect();const n=hitNode(ev.clientX-r.left,ev.clientY-r.top);
+  if(!n){tip.style.display="none";return;}
+  tip.style.display="block";tip.style.left=(ev.clientX+12)+"px";tip.style.top=(ev.clientY+12)+"px";
+  tip.innerHTML=`<b>${n.label}</b><br/>Selections: <b>${n.value}</b>`;
+});
+netCanvas.addEventListener("mouseleave",()=>tip.style.display="none");
+
+/* TABS */
+const catalogWrap=document.getElementById("catalogWrap");
+const dashWrap=document.getElementById("dashWrap");
+const networkWrap=document.getElementById("networkWrap");
+function showCatalog(){
+  document.getElementById("tabCatalog").classList.add("active");
+  document.getElementById("tabDash").classList.remove("active");
+  document.getElementById("tabNet").classList.remove("active");
+  catalogWrap.style.display="";dashWrap.style.display="none";networkWrap.style.display="none";
+}
+function showDash(){
+  document.getElementById("tabCatalog").classList.remove("active");
+  document.getElementById("tabDash").classList.add("active");
+  document.getElementById("tabNet").classList.remove("active");
+  catalogWrap.style.display="none";dashWrap.style.display="";networkWrap.style.display="none";
+  buildDash();
+}
+function showNet(){
+  document.getElementById("tabCatalog").classList.remove("active");
+  document.getElementById("tabDash").classList.remove("active");
+  document.getElementById("tabNet").classList.add("active");
+  catalogWrap.style.display="none";dashWrap.style.display="none";networkWrap.style.display="block";
+  buildNet();resizeCv();drawNet();
+}
+document.getElementById("tabCatalog").addEventListener("click",showCatalog);
+document.getElementById("tabDash").addEventListener("click",showDash);
+document.getElementById("tabNet").addEventListener("click",showNet);
+
+/* CSV */
+function exportCSV(){
+  const h=["pid","catId","catName","item","glbUrl","qty"];
+  const rows=selections.map(r=>[r.pid,r.catId,r.catName,r.item,r.url,String(r.qty)]);
+  const esc=s=>`"${String(s).replaceAll('"','""')}"`;
+  const csv=[h.join(","),...rows.map(r=>r.map(esc).join(","))].join("\n");
+  const a=Object.assign(document.createElement("a"),{href:URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"})),download:"model_pravet_selections.csv"});
+  document.body.appendChild(a);a.click();a.remove();
+}
+
+/* REFRESH */
+function refreshAll(q=""){
+  buildNav(q);buildCatalog(q);
+  document.getElementById("kpiS").textContent=selections.reduce((s,r)=>s+r.qty,0);
+  if(dashWrap.style.display!=="none")buildDash();
+  if(networkWrap.style.display!=="none"){buildNet();resizeCv();drawNet();}
+}
+
+document.getElementById("btnRegen").addEventListener("click",()=>{generateMock();refreshAll(document.getElementById("searchInput").value);});
+document.getElementById("btnCSV").addEventListener("click",exportCSV);
+document.getElementById("searchInput").addEventListener("input",e=>refreshAll(e.target.value));
+window.addEventListener("resize",()=>{if(networkWrap.style.display!=="none"){resizeCv();drawNet();}});
+
+generateMock();refreshAll("");showCatalog();
+</script>
+</body>
+</html>
