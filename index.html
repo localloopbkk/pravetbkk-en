@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>Street Furniture Editor</title>
@@ -174,10 +174,10 @@
   <div id="startScreen">
     <div class="start-content">
       <img class="start-logo" src="images/logo.png" alt="LocalLoop BKK" onerror="this.style.display='none'">
-      <div class="start-title">🌿 ออกแบบสวนสาธารณะ<br>ในฝันของคุณ</div>
-      <div class="start-sub">วางเฟอร์นิเจอร์ เพิ่มต้นไม้ สร้างสรรค์พื้นที่สีเขียว</div>
-      <button id="btn_start">✨ เริ่มต้น</button>
-      <div class="start-hint">ดับเบิลคลิกบนพื้นที่เพื่อวางวัตถุ</div>
+      <div class="start-title">🌿 Design Your Dream<br>Public Park</div>
+      <div class="start-sub">Place furniture, add trees, create green spaces</div>
+      <button id="btn_start">✨ Start</button>
+      <div class="start-hint">Double-click on the area to place objects</div>
     </div>
   </div>
 
@@ -195,36 +195,36 @@
     <div class="divider" style="margin-bottom:2px"></div>
 
     <div class="panel">
-      <button class="ctrl" id="btn_music">🔇 เสียง: ปิด</button>
-      <button class="ctrl" id="btn_snap">📷 บันทึกภาพหน้าจอ</button>
+      <button class="ctrl" id="btn_music">🔇 Sound: Off</button>
+      <button class="ctrl" id="btn_snap">📷 Save Screenshot</button>
       <div>
-        <div class="extra-input-label">ข้อเสนอแนะเพิ่มเติม</div>
-        <textarea id="additionalInfo" class="extra-input" placeholder="พิมพ์ความคิดเห็นของคุณ..."></textarea>
+        <div class="extra-input-label">Additional Feedback</div>
+        <textarea id="additionalInfo" class="extra-input" placeholder="Type your comments here..."></textarea>
       </div>
-      <button class="ctrl accent-btn" id="btn_submit">✔ ส่งข้อมูล</button>
+      <button class="ctrl accent-btn" id="btn_submit">✔ Submit</button>
       
-      <button class="ctrl" id="btn_toggle_tree">🌳 ปิด ต้นไม้เดิม</button>
+      <button class="ctrl" id="btn_toggle_tree">🌳 Hide Original Trees</button>
 
-      <button class="ctrl" id="btn_undo">⟲ เลิกทำ</button>
+      <button class="ctrl" id="btn_undo">⟲ Undo</button>
     </div>
 
     <div class="divider"></div>
 
     <div class="panel" id="propPanelWrapper" style="display:none">
       <div class="status" style="margin-top:0;padding:8px 11px;">
-        <b>✨ เลือก: <span id="selNameDisp" style="color:var(--accent)"></span></b>
+        <b>✨ Selected: <span id="selNameDisp" style="color:var(--accent)"></span></b>
       </div>
-      <button class="ctrl delete-btn" id="btn_delete_sel">🗑 ลบวัตถุ</button>
+      <button class="ctrl delete-btn" id="btn_delete_sel">🗑 Delete Object</button>
       <div class="prop-panel" style="display:flex;margin-top:3px">
-        <div class="prop-row"><span>🎨 สี</span><input type="color" id="objColor" value="#ffffff"></div>
-        <div class="prop-row" style="margin-top:5px"><span>📏 ขนาด</span><input type="number" id="objScale" step="0.1" value="1.0" style="width:64px"></div>
+        <div class="prop-row"><span>🎨 Color</span><input type="color" id="objColor" value="#ffffff"></div>
+        <div class="prop-row" style="margin-top:5px"><span>📏 Scale</span><input type="number" id="objScale" step="0.1" value="1.0" style="width:64px"></div>
       </div>
     </div>
 
     <div class="divider"></div>
 
     <div class="panel">
-      <div class="section-hdr">⟳ การหมุน</div>
+      <div class="section-hdr">⟳ Rotation</div>
       <div class="rot-row">
         <button class="ctrl" id="btn_rot_holdL" style="text-align:center;padding:8px 4px;font-size:17px">⟲</button>
         <button class="ctrl" id="btn_rot_holdR" style="text-align:center;padding:8px 4px;font-size:17px">⟳</button>
@@ -232,31 +232,31 @@
       <input id="rotSlider" type="range" min="0" max="360" value="0" step="1"/>
       <div class="status" style="margin-top:1px;padding:7px 11px;font-size:11.5px">
         <label style="display:flex;align-items:center;gap:5px;margin-bottom:4px">
-          <span>แกน:</span>
+          <span>Axis:</span>
           <select id="rotAxis" style="flex:1">
-            <option value="z">หันซ้าย-ขวา (Z)</option>
-            <option value="y">เงย-ก้ม (Y)</option>
-            <option value="x">เอียง (X)</option>
+            <option value="z">Turn Left-Right (Z)</option>
+            <option value="y">Tilt Up-Down (Y)</option>
+            <option value="x">Roll (X)</option>
           </select>
         </label>
-        <div><b>มุม (<span id="axisLabel">Z</span>):</b> <span id="rotDeg" style="color:var(--accent)">0°</span></div>
+        <div><b>Angle (<span id="axisLabel">Z</span>):</b> <span id="rotDeg" style="color:var(--accent)">0°</span></div>
       </div>
     </div>
 
     <div class="divider"></div>
 
     <div class="panel">
-      <div class="section-hdr">⊞ ตาราง</div>
+      <div class="section-hdr">⊞ Grid</div>
       <div class="grid-row">
         <button class="ctrl" id="btn_grid_minus" style="text-align:center">➖</button>
         <button class="ctrl" id="btn_grid_plus"  style="text-align:center">➕</button>
       </div>
-      <button class="ctrl" id="btn_grid_random" style="font-size:11.5px">🎲 สุ่มตาราง: ปิด</button>
+      <button class="ctrl" id="btn_grid_random" style="font-size:11.5px">🎲 Random Grid: Off</button>
     </div>
 
     <div class="status" id="statusBox">
-      <div>📦 <b>วางทั้งหมด:</b> <span id="totalPlaced" style="color:var(--accent);font-weight:700">0</span></div>
-      <div>⊞ <b>ขนาดตาราง:</b> <span id="gridSizeLabel">20</span> ช่อง</div>
+      <div>📦 <b>Total Placed:</b> <span id="totalPlaced" style="color:var(--accent);font-weight:700">0</span></div>
+      <div>⊞ <b>Grid Size:</b> <span id="gridSizeLabel">20</span> cells</div>
     </div>
   </aside>
 
@@ -277,15 +277,14 @@
     const CITY_BASE_URL   = SUPABASE_URL + '/storage/v1/object/public/models/Models/';
     const MODEL_BASE_URL  = SUPABASE_URL + '/storage/v1/object/public/Model_Pravet/';
     const ICON_BASE_URL   = SUPABASE_URL + '/storage/v1/object/public/Model_Pravet/Icon/';
-
-    /* ลบโค้ดลิงก์ Gsheet ออกแล้ว */
+    const GOOGLE_SHEET_LINK = 'https://docs.google.com/spreadsheets/d/11TNv7OQtxeFjaMX_sUuSWH6R8Sb35GIDqsIUJs2UrVQ/edit?usp=sharing';
 
     /* ─ START SCREEN ─ */
     const startScreen = document.getElementById('startScreen');
     document.getElementById('btn_start').addEventListener('click', () => {
       startScreen.classList.add('hidden');
       bgMusic.play().then(() => {
-        btnMusic.textContent = '🎵 เสียง: เปิด';
+        btnMusic.textContent = '🎵 Sound: On';
         btnMusic.classList.add('music-on');
         isMusicPlaying = true;
       }).catch(() => {});
@@ -298,9 +297,9 @@
     bgMusic.volume = 0.4;
     btnMusic.addEventListener('click', () => {
       if (isMusicPlaying) {
-        bgMusic.pause(); btnMusic.textContent = '🔇 เสียง: ปิด'; btnMusic.classList.remove('music-on');
+        bgMusic.pause(); btnMusic.textContent = '🔇 Sound: Off'; btnMusic.classList.remove('music-on');
       } else {
-        bgMusic.play().then(() => { btnMusic.textContent = '🎵 เสียง: เปิด'; btnMusic.classList.add('music-on'); }).catch(e => console.warn(e));
+        bgMusic.play().then(() => { btnMusic.textContent = '🎵 Sound: On'; btnMusic.classList.add('music-on'); }).catch(e => console.warn(e));
       }
       isMusicPlaying = !isMusicPlaying;
     });
@@ -505,7 +504,7 @@
       if (treeModel) {
         isTreeVisible = !isTreeVisible;
         treeModel.visible = isTreeVisible;
-        document.getElementById('btn_toggle_tree').textContent = isTreeVisible ? '🌳 ปิด ต้นไม้เดิม' : '🌳 เปิด ต้นไม้เดิม';
+        document.getElementById('btn_toggle_tree').textContent = isTreeVisible ? '🌳 Hide Original Trees' : '🌳 Show Original Trees';
       }
     });
     /* ─ DATA ─ */
@@ -520,120 +519,120 @@
        path รูปคือ /icon/{GroupName}{n}.png  (n = ลำดับใน group เริ่มจาก 1)
        ถ้าไฟล์ไม่พบจะ fallback เป็น emoji อัตโนมัติ                          */
     const ITEM_ICON = {
-      /* 01 เก้าอี้ */
-      '01 เก้าอี้::เก้าอี้สนามแบบม้านั่งเตี้ย':                          '/icon/Park Bench1.png',
-      '01 เก้าอี้::เก้าอี้ชมสนามกีฬาแบบอัฒจันทร์ย่อม':                  '/icon/Park Bench2.png',
-      '01 เก้าอี้::เก้าอี้มีพนักพิงพร้อมที่วางแขน':                      '/icon/Park Bench3.png',
-      '01 เก้าอี้::เก้าอี้วงกลมรอบต้นไม้':                               '/icon/Park Bench4.png',
-      '01 เก้าอี้::เก้าอี้เอนกาย/เก้าอี้นอนสนาม':                       '/icon/Park Bench5.png',
-      /* 02 โต๊ะ */
-      '02 โต๊ะ::โต๊ะปิกนิกพร้อมม้านั่ง':                                '/icon/Table1.png',
-      '02 โต๊ะ::โต๊ะบาร์ยืน/โต๊ะสูงริมทางวิ่ง':                         '/icon/Table2.png',
-      '02 โต๊ะ::โต๊ะหมากรุก/เกมกระดาน':                                  '/icon/Table3.png',
-      '02 โต๊ะ::โต๊ะทำงานกลางแจ้ง':                                      '/icon/Table4.png',
-      /* 03 เครื่องออกกำลังกาย */
-      '03 เครื่องออกกำลังกาย::สเตชั่นยืดเหยียด/คูลดาวน์':               '/icon/Exercise1.png',
-      '03 เครื่องออกกำลังกาย::เครื่องฝึกแรงต้านแบบน้ำหนักตัว':           '/icon/Exercise2.png',
-      '03 เครื่องออกกำลังกาย::เครื่องคาร์ดิโอแบบกลางแจ้ง':               '/icon/Exercise3.png',
-      '03 เครื่องออกกำลังกาย::สเตชั่นฝึกสมดุล/ผู้สูงอายุ':               '/icon/Exercise4.png',
-      '03 เครื่องออกกำลังกาย::โซนเวทแบบใช้ดัมบ์เบลกลางแจ้ง':             '/icon/Exercise5.png',
-      /* 04 เครื่องเล่นเด็ก */
-      '04 เครื่องเล่นเด็ก::โครงปีนหน้าผา/ผนังปีน':                       '/icon/Playground1.png',
-      '04 เครื่องเล่นเด็ก::ชุดสไลเดอร์–หอคอย–สะพาน':                    '/icon/Playground2.png',
-      '04 เครื่องเล่นเด็ก::ชิงช้าแบบปลอดภัย':                            '/icon/Playground3.png',
-      '04 เครื่องเล่นเด็ก::เครื่องเล่นน้ำแบบพ่นฝอย':                     '/icon/Playground4.png',
-      '04 เครื่องเล่นเด็ก::โซนเล่นเชิงสร้างสรรค์ด้วยทราย/ธรรมชาติ':     '/icon/Playground5.png',
-      /* 05 กล้องวงจรปิด */
-      '05 กล้องวงจรปิด::กล้องทางเข้า–ออกสวน':                            '/icon/CCTV1.png',
-      '05 กล้องวงจรปิด::กล้องโซนสนามกีฬาและอัฒจันทร์':                   '/icon/CCTV2.png',
-      '05 กล้องวงจรปิด::กล้องตามทางวิ่งและจุดอับสายตา':                   '/icon/CCTV3.png',
-      '05 กล้องวงจรปิด::กล้องใกล้บ่อน้ำ/พื้นที่เสี่ยง':                  '/icon/CCTV4.png',
-      /* 06 ตู้กดน้ำสาธารณะ */
-      '06 ตู้กดน้ำสาธารณะ::น้ำดื่มพร้อมที่เติมขวด':                      '/icon/Water Fountain1.png',
-      '06 ตู้กดน้ำสาธารณะ::ตู้กดน้ำแบบเข้าถึงรถเข็น':                    '/icon/Water Fountain2.png',
-      '06 ตู้กดน้ำสาธารณะ::จุดน้ำ–ล้างมือใกล้สนามเด็กเล่น':              '/icon/Water Fountain3.png',
-      '06 ตู้กดน้ำสาธารณะ::จุดน้ำสำหรับสัตว์เลี้ยง':                     '/icon/Water Fountain4.png',
-      /* 07 ไฟส่องสว่าง */
-      '07 ไฟส่องสว่าง::เสาไฟทางเดินทั่วไป':                              '/icon/Street Light1.png',
-      '07 ไฟส่องสว่าง::ไฟสปอร์ตไลท์สนามกีฬา':                           '/icon/Street Light2.png',
-      '07 ไฟส่องสว่าง::ไฟบรรยากาศริมบ่อน้ำ/ทางเดินไม้':                  '/icon/Street Light3.png',
-      '07 ไฟส่องสว่าง::ไฟโซลาร์อัจฉริยะ':                               '/icon/Street Light4.png',
-      /* 08 ที่หลบฝน/หลังคา */
-      '08 ที่หลบฝน/หลังคา::ศาลากันแดด–กันฝนแบบเปิดโล่ง':                '/icon/Shelter1.png',
-      '08 ที่หลบฝน/หลังคา::เพอร์โกลาพร้อมไม้เลื้อย':                    '/icon/Shelter2.png',
-      '08 ที่หลบฝน/หลังคา::หลังคาคลุมจุดนั่งชมสนาม':                    '/icon/Shelter3.png',
-      '08 ที่หลบฝน/หลังคา::ซุ้มรอ–จุดนัดพบ':                            '/icon/Shelter4.png',
-      /* 09 ตู้ล็อคเกอร์สาธารณะ */
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ล็อคเกอร์นักวิ่ง–นักกีฬา':            '/icon/Locker1.png',
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ฝากของสำหรับกิจกรรมเมือง':             '/icon/Locker2.png',
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ล็อคเกอร์อุปกรณ์ยืมใช้':              '/icon/Locker3.png',
-      /* 10 เครื่องกระตุกหัวใจ AED */
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED จุดศูนย์กลางสวน':              '/icon/AED1.png',
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED โซนสนามกีฬา':                  '/icon/AED2.png',
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED ใกล้ทางวิ่งระยะไกล':           '/icon/AED3.png',
-      /* 11 จุดทิ้งขยะ */
-      '11 จุดทิ้งขยะ::ถังขยะแยกประเภท':                                  '/icon/Bin1.png',
-      '11 จุดทิ้งขยะ::ถังขยะริมทางวิ่งแบบจุดย่อย':                       '/icon/Bin2.png',
-      '11 จุดทิ้งขยะ::ถังทิ้งมูลสัตว์เลี้ยง':                            '/icon/Bin3.png',
-      /* 12 ลำโพงกระจายเสียง */
-      '12 ลำโพงกระจายเสียง::ระบบประกาศฉุกเฉินทั่วสวน':                   '/icon/Speaker1.png',
-      '12 ลำโพงกระจายเสียง::ลำโพงโซนสนามกีฬาและกิจกรรม':                 '/icon/Speaker2.png',
-      '12 ลำโพงกระจายเสียง::ลำโพงดนตรีบรรยากาศโซนพักผ่อน':               '/icon/Speaker3.png',
-      '12 ลำโพงกระจายเสียง::จุดประกาศสองภาษา/ข้อมูลสวน':                 '/icon/Speaker4.png',
+      /* 01 Seating */
+      '01 Seating::Low Park Bench':                          '/icon/Park Bench1.png',
+      '01 Seating::Stadium Seating Bench':                  '/icon/Park Bench2.png',
+      '01 Seating::Armrest Bench':                      '/icon/Park Bench3.png',
+      '01 Seating::Circular Tree Bench':                               '/icon/Park Bench4.png',
+      '01 Seating::Reclining/Lounger Chair':                       '/icon/Park Bench5.png',
+      /* 02 Tables */
+      '02 Tables::Picnic Table with Benches':                                '/icon/Table1.png',
+      '02 Tables::Bar/High Table along Running Path':                         '/icon/Table2.png',
+      '02 Tables::Chess/Board Game Table':                                  '/icon/Table3.png',
+      '02 Tables::Outdoor Work Table':                                      '/icon/Table4.png',
+      /* 03 Exercise Equipment */
+      '03 Exercise Equipment::Stretch/Cool-down Station':               '/icon/Exercise1.png',
+      '03 Exercise Equipment::Bodyweight Resistance Trainer':           '/icon/Exercise2.png',
+      '03 Exercise Equipment::Outdoor Cardio Machine':               '/icon/Exercise3.png',
+      '03 Exercise Equipment::Balance Training/Senior Station':               '/icon/Exercise4.png',
+      '03 Exercise Equipment::Outdoor Dumbbell Weight Zone':             '/icon/Exercise5.png',
+      /* 04 Playground Equipment */
+      '04 Playground Equipment::Climbing Frame/Wall':                       '/icon/Playground1.png',
+      '04 Playground Equipment::Slide–Tower–Bridge Set':                    '/icon/Playground2.png',
+      '04 Playground Equipment::Safety Swing':                            '/icon/Playground3.png',
+      '04 Playground Equipment::Water Spray Play Feature':                     '/icon/Playground4.png',
+      '04 Playground Equipment::Creative Sand/Nature Play Zone':     '/icon/Playground5.png',
+      /* 05 CCTV Cameras */
+      '05 CCTV Cameras::Park Entrance/Exit Camera':                            '/icon/CCTV1.png',
+      '05 CCTV Cameras::Sports Zone/Stadium Camera':                   '/icon/CCTV2.png',
+      '05 CCTV Cameras::Running Track/Blind Spot Camera':                   '/icon/CCTV3.png',
+      '05 CCTV Cameras::Pond/Risk Area Camera':                  '/icon/CCTV4.png',
+      /* 06 Public Water Fountains */
+      '06 Public Water Fountains::Drinking Water with Bottle Refill':                      '/icon/Water Fountain1.png',
+      '06 Public Water Fountains::Wheelchair-accessible Fountain':                    '/icon/Water Fountain2.png',
+      '06 Public Water Fountains::Water/Handwash near Playground':              '/icon/Water Fountain3.png',
+      '06 Public Water Fountains::Pet Water Station':                     '/icon/Water Fountain4.png',
+      /* 07 Lighting */
+      '07 Lighting::General Pathway Light Pole':                              '/icon/Street Light1.png',
+      '07 Lighting::Sports Field Spotlight':                           '/icon/Street Light2.png',
+      '07 Lighting::Pond/Boardwalk Ambient Light':                  '/icon/Street Light3.png',
+      '07 Lighting::Smart Solar Light':                               '/icon/Street Light4.png',
+      /* 08 Shelters/Roofed Areas */
+      '08 Shelters/Roofed Areas::Open-air Sun/Rain Shelter':                '/icon/Shelter1.png',
+      '08 Shelters/Roofed Areas::Pergola with Climbing Plants':                    '/icon/Shelter2.png',
+      '08 Shelters/Roofed Areas::Roof over Spectator Seating':                    '/icon/Shelter3.png',
+      '08 Shelters/Roofed Areas::Waiting/Meeting Archway':                            '/icon/Shelter4.png',
+      /* 09 Public Lockers */
+      '09 Public Lockers::Runner/Athlete Locker':            '/icon/Locker1.png',
+      '09 Public Lockers::City Events Storage Locker':             '/icon/Locker2.png',
+      '09 Public Lockers::Equipment Lending Locker':              '/icon/Locker3.png',
+      /* 10 AED Defibrillators */
+      '10 AED Defibrillators::AED Cabinet – Park Centre':              '/icon/AED1.png',
+      '10 AED Defibrillators::AED Cabinet – Sports Zone':                  '/icon/AED2.png',
+      '10 AED Defibrillators::AED Cabinet – Long-distance Track':           '/icon/AED3.png',
+      /* 11 Waste Disposal */
+      '11 Waste Disposal::Sorted Recycling Bins':                                  '/icon/Bin1.png',
+      '11 Waste Disposal::Running Path Sub-station Bin':                       '/icon/Bin2.png',
+      '11 Waste Disposal::Pet Waste Bin':                            '/icon/Bin3.png',
+      /* 12 Public Address Speakers */
+      '12 Public Address Speakers::Park-wide Emergency Announcement':                   '/icon/Speaker1.png',
+      '12 Public Address Speakers::Sports & Activity Zone Speaker':                 '/icon/Speaker2.png',
+      '12 Public Address Speakers::Relaxation Zone Ambient Speaker':               '/icon/Speaker3.png',
+      '12 Public Address Speakers::Bilingual Announcement/Park Info Point':                 '/icon/Speaker4.png',
       /* 13 ป้ายและระบบ Wayfinding */
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายแผนที่สวนแบบรวม':         '/icon/Sign1.png',
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายบอกทิศทางแบบเสาเข็ม':    '/icon/Sign2.png',
-      '13 ป้ายและระบบ Wayfinding / Signage::หมุดระยะทางลู่วิ่ง':          '/icon/Sign3.png',
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายกติกาการใช้พื้นที่/สนาม': '/icon/Sign4.png',
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายเตือนความเสี่ยงริมบ่อน้ำ':'/icon/Sign5.png',
+      '13 Signs & Wayfinding / Signage::Integrated Park Map Sign':         '/icon/Sign1.png',
+      '13 Signs & Wayfinding / Signage::Post-mounted Directional Sign':    '/icon/Sign2.png',
+      '13 Signs & Wayfinding / Signage::Running Track Distance Marker':          '/icon/Sign3.png',
+      '13 Signs & Wayfinding / Signage::Area/Facility Usage Rules Sign': '/icon/Sign4.png',
+      '13 Signs & Wayfinding / Signage::Pond-side Hazard Warning Sign':'/icon/Sign5.png',
       /* 14 ร่มเงา–ต้นไม้ */
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::แนวไม้ให้ร่มตามทางวิ่ง':       '/icon/Tree1.png',
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::แปลงพุ่มเตี้ย':                '/icon/Tree2.png',
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::ลานหญ้าใช้งานพร้อมร่มเงา':     '/icon/Tree3.png',
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::โครงบังแดดแบบเบา':             '/icon/Tree4.png',
+      '14 Shade Trees – Functional Landscape::Shade Tree Line along Running Path':       '/icon/Tree1.png',
+      '14 Shade Trees – Functional Landscape::Low Shrub Bed':                '/icon/Tree2.png',
+      '14 Shade Trees – Functional Landscape::Functional Lawn with Shade':     '/icon/Tree3.png',
+      '14 Shade Trees – Functional Landscape::Lightweight Sunshade Structure':             '/icon/Tree4.png',
       /* 15 ความปลอดภัย */
-      '15 ความปลอดภัยและขอความช่วยเหลือ::เสาฉุกเฉิน SOS พร้อมไฟและสัญญาณ':'/icon/Safety1.png',
-      '15 ความปลอดภัยและขอความช่วยเหลือ::จุดปฐมพยาบาลพื้นฐาน':           '/icon/Safety2.png',
-      '15 ความปลอดภัยและขอความช่วยเหลือ::ป้ายรหัสโซน/พิกัดสวนสำหรับแจ้งเหตุ':'/icon/Safety3.png',
-      '15 ความปลอดภัยและขอความช่วยเหลือ::ราวกันตกและขอบกันลื่นริมบ่อน้ำ':'/icon/Safety4.png',
-      '15 ความปลอดภัยและขอความช่วยเหลือ::จุดเจ้าหน้าที่/ตู้สื่อสารบริการ':'/icon/Safety5.png',
+      '15 Safety & Assistance::SOS Emergency Post with Lights & Signal':'/icon/Safety1.png',
+      '15 Safety & Assistance::Basic First Aid Station':           '/icon/Safety2.png',
+      '15 Safety & Assistance::Zone Code/Park Coordinate Sign':'/icon/Safety3.png',
+      '15 Safety & Assistance::Guardrails & Non-slip Edges by Pond':'/icon/Safety4.png',
+      '15 Safety & Assistance::Staff Station/Service Kiosk':'/icon/Safety5.png',
       /* 16 จักรยาน */
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::ที่จอดจักรยานแบบ U-Rack':   '/icon/Bicycle1.png',
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::จุดจอดสกู๊ตเตอร์/ไมโครโมบิลิตี้แบบจัดระเบียบ':'/icon/Bicycle2.png',
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::จุดซ่อมจักรยานพร้อมปั๊มลม': '/icon/Bicycle3.png',
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::มาตรการชะลอความเร็ว':        '/icon/Bicycle4.png',
-      /* 17 ห้องน้ำสาธารณะ */
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำขนาดเล็กแยกเพศแบบแยกห้อง':             '/icon/Toilet1.png',
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำขนาดกลาง แยกเพศ เพศละ 2 ห้อง':         '/icon/Toilet2.png',
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำใหญ่สุดพร้อมห้องอาบน้ำ':               '/icon/Toilet3.png',
-      '17 ห้องน้ำสาธารณะ::จุดล้างมือ–ล้างเท้าด้านนอก':                   '/icon/Toilet4.png',
-      /* 18 คน */
-      '18 คน::คน 01': '/icon/Experiment1.png',
-      '18 คน::คน 02': '/icon/Experiment2.png',
-      '18 คน::คน 03': '/icon/Experiment3.png',
-      '18 คน::คน 04': '/icon/Experiment4.png',
-      '18 คน::คน 05': '/icon/Experiment5.png',
+      '16 Bicycle & Micromobility::U-Rack Bicycle Parking':   '/icon/Bicycle1.png',
+      '16 Bicycle & Micromobility::Organized Scooter/Micromobility Parking':'/icon/Bicycle2.png',
+      '16 Bicycle & Micromobility::Bicycle Repair Station with Air Pump': '/icon/Bicycle3.png',
+      '16 Bicycle & Micromobility::Speed Calming Measures':        '/icon/Bicycle4.png',
+      /* 17 Public Restrooms */
+      '17 Public Restrooms::Small Gender-separated Restroom':             '/icon/Toilet1.png',
+      '17 Public Restrooms::Medium Restroom – 2 Stalls per Gender':         '/icon/Toilet2.png',
+      '17 Public Restrooms::Large Restroom with Showers':               '/icon/Toilet3.png',
+      '17 Public Restrooms::Exterior Hand & Foot Wash Station':                   '/icon/Toilet4.png',
+      /* 18 People */
+      '18 People::Person 01': '/icon/Experiment1.png',
+      '18 People::Person 02': '/icon/Experiment2.png',
+      '18 People::Person 03': '/icon/Experiment3.png',
+      '18 People::Person 04': '/icon/Experiment4.png',
+      '18 People::Person 05': '/icon/Experiment5.png',
     };
 
     const GROUPS = {
-      '01 เก้าอี้':['01 เก้าอี้::เก้าอี้สนามแบบม้านั่งเตี้ย','01 เก้าอี้::เก้าอี้ชมสนามกีฬาแบบอัฒจันทร์ย่อม','01 เก้าอี้::เก้าอี้มีพนักพิงพร้อมที่วางแขน','01 เก้าอี้::เก้าอี้วงกลมรอบต้นไม้','01 เก้าอี้::เก้าอี้เอนกาย/เก้าอี้นอนสนาม'],
-      '02 โต๊ะ':['02 โต๊ะ::โต๊ะปิกนิกพร้อมม้านั่ง','02 โต๊ะ::โต๊ะบาร์ยืน/โต๊ะสูงริมทางวิ่ง','02 โต๊ะ::โต๊ะหมากรุก/เกมกระดาน','02 โต๊ะ::โต๊ะทำงานกลางแจ้ง'],
-      '03 เครื่องออกกำลังกาย':['03 เครื่องออกกำลังกาย::สเตชั่นยืดเหยียด/คูลดาวน์','03 เครื่องออกกำลังกาย::เครื่องฝึกแรงต้านแบบน้ำหนักตัว','03 เครื่องออกกำลังกาย::เครื่องคาร์ดิโอแบบกลางแจ้ง','03 เครื่องออกกำลังกาย::สเตชั่นฝึกสมดุล/ผู้สูงอายุ','03 เครื่องออกกำลังกาย::โซนเวทแบบใช้ดัมบ์เบลกลางแจ้ง'],
-      '04 เครื่องเล่นเด็ก':['04 เครื่องเล่นเด็ก::โครงปีนหน้าผา/ผนังปีน','04 เครื่องเล่นเด็ก::ชุดสไลเดอร์–หอคอย–สะพาน','04 เครื่องเล่นเด็ก::ชิงช้าแบบปลอดภัย','04 เครื่องเล่นเด็ก::เครื่องเล่นน้ำแบบพ่นฝอย','04 เครื่องเล่นเด็ก::โซนเล่นเชิงสร้างสรรค์ด้วยทราย/ธรรมชาติ'],
-      '05 กล้องวงจรปิด':['05 กล้องวงจรปิด::กล้องทางเข้า–ออกสวน','05 กล้องวงจรปิด::กล้องโซนสนามกีฬาและอัฒจันทร์','05 กล้องวงจรปิด::กล้องตามทางวิ่งและจุดอับสายตา','05 กล้องวงจรปิด::กล้องใกล้บ่อน้ำ/พื้นที่เสี่ยง'],
-      '06 ตู้กดน้ำสาธารณะ':['06 ตู้กดน้ำสาธารณะ::น้ำดื่มพร้อมที่เติมขวด','06 ตู้กดน้ำสาธารณะ::ตู้กดน้ำแบบเข้าถึงรถเข็น','06 ตู้กดน้ำสาธารณะ::จุดน้ำ–ล้างมือใกล้สนามเด็กเล่น','06 ตู้กดน้ำสาธารณะ::จุดน้ำสำหรับสัตว์เลี้ยง'],
-      '07 ไฟส่องสว่าง':['07 ไฟส่องสว่าง::เสาไฟทางเดินทั่วไป','07 ไฟส่องสว่าง::ไฟสปอร์ตไลท์สนามกีฬา','07 ไฟส่องสว่าง::ไฟบรรยากาศริมบ่อน้ำ/ทางเดินไม้','07 ไฟส่องสว่าง::ไฟโซลาร์อัจฉริยะ'],
-      '08 ที่หลบฝน/หลังคา':['08 ที่หลบฝน/หลังคา::ศาลากันแดด–กันฝนแบบเปิดโล่ง','08 ที่หลบฝน/หลังคา::เพอร์โกลาพร้อมไม้เลื้อย','08 ที่หลบฝน/หลังคา::หลังคาคลุมจุดนั่งชมสนาม','08 ที่หลบฝน/หลังคา::ซุ้มรอ–จุดนัดพบ'],
-      '09 ตู้ล็อคเกอร์สาธารณะ':['09 ตู้ล็อคเกอร์สาธารณะ::ตู้ล็อคเกอร์นักวิ่ง–นักกีฬา','09 ตู้ล็อคเกอร์สาธารณะ::ตู้ฝากของสำหรับกิจกรรมเมือง','09 ตู้ล็อคเกอร์สาธารณะ::ตู้ล็อคเกอร์อุปกรณ์ยืมใช้'],
-      '10 เครื่องกระตุกหัวใจ AED':['10 เครื่องกระตุกหัวใจ AED::ตู้ AED จุดศูนย์กลางสวน','10 เครื่องกระตุกหัวใจ AED::ตู้ AED โซนสนามกีฬา','10 เครื่องกระตุกหัวใจ AED::ตู้ AED ใกล้ทางวิ่งระยะไกล'],
-      '11 จุดทิ้งขยะ':['11 จุดทิ้งขยะ::ถังขยะแยกประเภท','11 จุดทิ้งขยะ::ถังขยะริมทางวิ่งแบบจุดย่อย','11 จุดทิ้งขยะ::ถังทิ้งมูลสัตว์เลี้ยง'],
-      '12 ลำโพงกระจายเสียง':['12 ลำโพงกระจายเสียง::ระบบประกาศฉุกเฉินทั่วสวน','12 ลำโพงกระจายเสียง::ลำโพงโซนสนามกีฬาและกิจกรรม','12 ลำโพงกระจายเสียง::ลำโพงดนตรีบรรยากาศโซนพักผ่อน','12 ลำโพงกระจายเสียง::จุดประกาศสองภาษา/ข้อมูลสวน'],
-      '13 ป้ายและระบบ Wayfinding / Signage':['13 ป้ายและระบบ Wayfinding / Signage::ป้ายแผนที่สวนแบบรวม','13 ป้ายและระบบ Wayfinding / Signage::ป้ายบอกทิศทางแบบเสาเข็ม','13 ป้ายและระบบ Wayfinding / Signage::หมุดระยะทางลู่วิ่ง','13 ป้ายและระบบ Wayfinding / Signage::ป้ายกติกาการใช้พื้นที่/สนาม','13 ป้ายและระบบ Wayfinding / Signage::ป้ายเตือนความเสี่ยงริมบ่อน้ำ'],
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน':['14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::แนวไม้ให้ร่มตามทางวิ่ง','14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::แปลงพุ่มเตี้ย','14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::ลานหญ้าใช้งานพร้อมร่มเงา','14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::โครงบังแดดแบบเบา'],
-      '15 ความปลอดภัยและขอความช่วยเหลือ':['15 ความปลอดภัยและขอความช่วยเหลือ::เสาฉุกเฉิน SOS พร้อมไฟและสัญญาณ','15 ความปลอดภัยและขอความช่วยเหลือ::จุดปฐมพยาบาลพื้นฐาน','15 ความปลอดภัยและขอความช่วยเหลือ::ป้ายรหัสโซน/พิกัดสวนสำหรับแจ้งเหตุ','15 ความปลอดภัยและขอความช่วยเหลือ::ราวกันตกและขอบกันลื่นริมบ่อน้ำ','15 ความปลอดภัยและขอความช่วยเหลือ::จุดเจ้าหน้าที่/ตู้สื่อสารบริการ'],
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้':['16 การจัดการจักรยานและไมโครโมบิลิตี้::ที่จอดจักรยานแบบ U-Rack','16 การจัดการจักรยานและไมโครโมบิลิตี้::จุดจอดสกู๊ตเตอร์/ไมโครโมบิลิตี้แบบจัดระเบียบ','16 การจัดการจักรยานและไมโครโมบิลิตี้::จุดซ่อมจักรยานพร้อมปั๊มลม','16 การจัดการจักรยานและไมโครโมบิลิตี้::มาตรการชะลอความเร็ว'],
-      '17 ห้องน้ำสาธารณะ':['17 ห้องน้ำสาธารณะ::ห้องน้ำขนาดเล็กแยกเพศแบบแยกห้อง','17 ห้องน้ำสาธารณะ::ห้องน้ำขนาดกลาง แยกเพศ เพศละ 2 ห้อง','17 ห้องน้ำสาธารณะ::ห้องน้ำใหญ่สุดพร้อมห้องอาบน้ำ','17 ห้องน้ำสาธารณะ::จุดล้างมือ–ล้างเท้าด้านนอก'],
-      '18 คน':['18 คน::คน 01','18 คน::คน 02','18 คน::คน 03','18 คน::คน 04','18 คน::คน 05'],
+      '01 Seating':['01 Seating::Low Park Bench','01 Seating::Stadium Seating Bench','01 Seating::Armrest Bench','01 Seating::Circular Tree Bench','01 Seating::Reclining/Lounger Chair'],
+      '02 Tables':['02 Tables::Picnic Table with Benches','02 Tables::Bar/High Table along Running Path','02 Tables::Chess/Board Game Table','02 Tables::Outdoor Work Table'],
+      '03 Exercise Equipment':['03 Exercise Equipment::Stretch/Cool-down Station','03 Exercise Equipment::Bodyweight Resistance Trainer','03 Exercise Equipment::Outdoor Cardio Machine','03 Exercise Equipment::Balance Training/Senior Station','03 Exercise Equipment::Outdoor Dumbbell Weight Zone'],
+      '04 Playground Equipment':['04 Playground Equipment::Climbing Frame/Wall','04 Playground Equipment::Slide–Tower–Bridge Set','04 Playground Equipment::Safety Swing','04 Playground Equipment::Water Spray Play Feature','04 Playground Equipment::Creative Sand/Nature Play Zone'],
+      '05 CCTV Cameras':['05 CCTV Cameras::Park Entrance/Exit Camera','05 CCTV Cameras::Sports Zone/Stadium Camera','05 CCTV Cameras::Running Track/Blind Spot Camera','05 CCTV Cameras::Pond/Risk Area Camera'],
+      '06 Public Water Fountains':['06 Public Water Fountains::Drinking Water with Bottle Refill','06 Public Water Fountains::Wheelchair-accessible Fountain','06 Public Water Fountains::Water/Handwash near Playground','06 Public Water Fountains::Pet Water Station'],
+      '07 Lighting':['07 Lighting::General Pathway Light Pole','07 Lighting::Sports Field Spotlight','07 Lighting::Pond/Boardwalk Ambient Light','07 Lighting::Smart Solar Light'],
+      '08 Shelters/Roofed Areas':['08 Shelters/Roofed Areas::Open-air Sun/Rain Shelter','08 Shelters/Roofed Areas::Pergola with Climbing Plants','08 Shelters/Roofed Areas::Roof over Spectator Seating','08 Shelters/Roofed Areas::Waiting/Meeting Archway'],
+      '09 Public Lockers':['09 Public Lockers::Runner/Athlete Locker','09 Public Lockers::City Events Storage Locker','09 Public Lockers::Equipment Lending Locker'],
+      '10 AED Defibrillators':['10 AED Defibrillators::AED Cabinet – Park Centre','10 AED Defibrillators::AED Cabinet – Sports Zone','10 AED Defibrillators::AED Cabinet – Long-distance Track'],
+      '11 Waste Disposal':['11 Waste Disposal::Sorted Recycling Bins','11 Waste Disposal::Running Path Sub-station Bin','11 Waste Disposal::Pet Waste Bin'],
+      '12 Public Address Speakers':['12 Public Address Speakers::Park-wide Emergency Announcement','12 Public Address Speakers::Sports & Activity Zone Speaker','12 Public Address Speakers::Relaxation Zone Ambient Speaker','12 Public Address Speakers::Bilingual Announcement/Park Info Point'],
+      '13 Signs & Wayfinding / Signage':['13 Signs & Wayfinding / Signage::Integrated Park Map Sign','13 Signs & Wayfinding / Signage::Post-mounted Directional Sign','13 Signs & Wayfinding / Signage::Running Track Distance Marker','13 Signs & Wayfinding / Signage::Area/Facility Usage Rules Sign','13 Signs & Wayfinding / Signage::Pond-side Hazard Warning Sign'],
+      '14 Shade Trees – Functional Landscape':['14 Shade Trees – Functional Landscape::Shade Tree Line along Running Path','14 Shade Trees – Functional Landscape::Low Shrub Bed','14 Shade Trees – Functional Landscape::Functional Lawn with Shade','14 Shade Trees – Functional Landscape::Lightweight Sunshade Structure'],
+      '15 Safety & Assistance':['15 Safety & Assistance::SOS Emergency Post with Lights & Signal','15 Safety & Assistance::Basic First Aid Station','15 Safety & Assistance::Zone Code/Park Coordinate Sign','15 Safety & Assistance::Guardrails & Non-slip Edges by Pond','15 Safety & Assistance::Staff Station/Service Kiosk'],
+      '16 Bicycle & Micromobility':['16 Bicycle & Micromobility::U-Rack Bicycle Parking','16 Bicycle & Micromobility::Organized Scooter/Micromobility Parking','16 Bicycle & Micromobility::Bicycle Repair Station with Air Pump','16 Bicycle & Micromobility::Speed Calming Measures'],
+      '17 Public Restrooms':['17 Public Restrooms::Small Gender-separated Restroom','17 Public Restrooms::Medium Restroom – 2 Stalls per Gender','17 Public Restrooms::Large Restroom with Showers','17 Public Restrooms::Exterior Hand & Foot Wash Station'],
+      '18 People':['18 People::Person 01','18 People::Person 02','18 People::Person 03','18 People::Person 04','18 People::Person 05'],
     };
 
     /*
@@ -642,99 +641,99 @@
      *   tall = สเกลตามความสูง (size.z หลัง rotate x 90°)
      */
     const ITEM_SCALE_M = {
-      /* 01 เก้าอี้ */
-      '01 เก้าอี้::เก้าอี้สนามแบบม้านั่งเตี้ย':                        {long:1.44},
-      '01 เก้าอี้::เก้าอี้ชมสนามกีฬาแบบอัฒจันทร์ย่อม':                {long:1.60},
-      '01 เก้าอี้::เก้าอี้มีพนักพิงพร้อมที่วางแขน':                    {long:0.50},
-      '01 เก้าอี้::เก้าอี้วงกลมรอบต้นไม้':                             {long:5.76},
-      '01 เก้าอี้::เก้าอี้เอนกาย/เก้าอี้นอนสนาม':                     {long:1.064},
-      /* 02 โต๊ะ */
-      '02 โต๊ะ::โต๊ะปิกนิกพร้อมม้านั่ง':                              {long:1.80},
-      '02 โต๊ะ::โต๊ะบาร์ยืน/โต๊ะสูงริมทางวิ่ง':                       {long:0.42},
-      '02 โต๊ะ::โต๊ะหมากรุก/เกมกระดาน':                                {long:0.90},
-      '02 โต๊ะ::โต๊ะทำงานกลางแจ้ง':                                    {long:1.40},
-      /* 03 เครื่องออกกำลังกาย */
-      '03 เครื่องออกกำลังกาย::สเตชั่นยืดเหยียด/คูลดาวน์':             {long:1.50},
-      '03 เครื่องออกกำลังกาย::เครื่องฝึกแรงต้านแบบน้ำหนักตัว':         {long:1.20},
-      '03 เครื่องออกกำลังกาย::เครื่องคาร์ดิโอแบบกลางแจ้ง':             {long:0.75},
-      '03 เครื่องออกกำลังกาย::สเตชั่นฝึกสมดุล/ผู้สูงอายุ':             {long:0.75},
-      '03 เครื่องออกกำลังกาย::โซนเวทแบบใช้ดัมบ์เบลกลางแจ้ง':           {long:1.50},
-      /* 04 เครื่องเล่นเด็ก */
-      '04 เครื่องเล่นเด็ก::โครงปีนหน้าผา/ผนังปีน':                    {long:1.50},
-      '04 เครื่องเล่นเด็ก::ชุดสไลเดอร์–หอคอย–สะพาน':                  {long:2.50},
-      '04 เครื่องเล่นเด็ก::ชิงช้าแบบปลอดภัย':                          {long:1.75},
-      '04 เครื่องเล่นเด็ก::เครื่องเล่นน้ำแบบพ่นฝอย':                   {long:1.50},
-      '04 เครื่องเล่นเด็ก::โซนเล่นเชิงสร้างสรรค์ด้วยทราย/ธรรมชาติ':   {long:2.50},
-      /* 05 กล้องวงจรปิด */
-      '05 กล้องวงจรปิด::กล้องทางเข้า–ออกสวน':                          {tall:1.75},
-      '05 กล้องวงจรปิด::กล้องโซนสนามกีฬาและอัฒจันทร์':                 {tall:1.75},
-      '05 กล้องวงจรปิด::กล้องตามทางวิ่งและจุดอับสายตา':                 {tall:1.75},
-      '05 กล้องวงจรปิด::กล้องใกล้บ่อน้ำ/พื้นที่เสี่ยง':                {tall:1.75},
-      /* 06 ตู้กดน้ำสาธารณะ */
-      '06 ตู้กดน้ำสาธารณะ::น้ำดื่มพร้อมที่เติมขวด':                    {tall:1.20},
-      '06 ตู้กดน้ำสาธารณะ::ตู้กดน้ำแบบเข้าถึงรถเข็น':                  {tall:0.90},
-      '06 ตู้กดน้ำสาธารณะ::จุดน้ำ–ล้างมือใกล้สนามเด็กเล่น':            {tall:1.00},
-      '06 ตู้กดน้ำสาธารณะ::จุดน้ำสำหรับสัตว์เลี้ยง':                   {tall:0.40},
-      /* 07 ไฟส่องสว่าง */
-      '07 ไฟส่องสว่าง::เสาไฟทางเดินทั่วไป':                            {tall:4.00},
-      '07 ไฟส่องสว่าง::ไฟสปอร์ตไลท์สนามกีฬา':                         {tall:6.00},
-      '07 ไฟส่องสว่าง::ไฟบรรยากาศริมบ่อน้ำ/ทางเดินไม้':                {tall:1.25},
-      '07 ไฟส่องสว่าง::ไฟโซลาร์อัจฉริยะ':                             {tall:5.00},
-      /* 08 ที่หลบฝน/หลังคา */
-      '08 ที่หลบฝน/หลังคา::ศาลากันแดด–กันฝนแบบเปิดโล่ง':              {long:5.00},
-      '08 ที่หลบฝน/หลังคา::เพอร์โกลาพร้อมไม้เลื้อย':                  {long:5.00},
-      '08 ที่หลบฝน/หลังคา::หลังคาคลุมจุดนั่งชมสนาม':                  {long:6.00},
-      '08 ที่หลบฝน/หลังคา::ซุ้มรอ–จุดนัดพบ':                          {long:4.00},
-      /* 09 ตู้ล็อคเกอร์สาธารณะ */
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ล็อคเกอร์นักวิ่ง–นักกีฬา':          {long:1.50},
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ฝากของสำหรับกิจกรรมเมือง':           {long:2.50},
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ล็อคเกอร์อุปกรณ์ยืมใช้':            {long:2.50},
+      /* 01 Seating */
+      '01 Seating::Low Park Bench':                        {long:1.44},
+      '01 Seating::Stadium Seating Bench':                {long:1.60},
+      '01 Seating::Armrest Bench':                    {long:0.50},
+      '01 Seating::Circular Tree Bench':                             {long:5.76},
+      '01 Seating::Reclining/Lounger Chair':                     {long:1.064},
+      /* 02 Tables */
+      '02 Tables::Picnic Table with Benches':                              {long:1.80},
+      '02 Tables::Bar/High Table along Running Path':                       {long:0.42},
+      '02 Tables::Chess/Board Game Table':                                {long:0.90},
+      '02 Tables::Outdoor Work Table':                                    {long:1.40},
+      /* 03 Exercise Equipment */
+      '03 Exercise Equipment::Stretch/Cool-down Station':             {long:1.50},
+      '03 Exercise Equipment::Bodyweight Resistance Trainer':         {long:1.20},
+      '03 Exercise Equipment::Outdoor Cardio Machine':             {long:0.75},
+      '03 Exercise Equipment::Balance Training/Senior Station':             {long:0.75},
+      '03 Exercise Equipment::Outdoor Dumbbell Weight Zone':           {long:1.50},
+      /* 04 Playground Equipment */
+      '04 Playground Equipment::Climbing Frame/Wall':                    {long:1.50},
+      '04 Playground Equipment::Slide–Tower–Bridge Set':                  {long:2.50},
+      '04 Playground Equipment::Safety Swing':                          {long:1.75},
+      '04 Playground Equipment::Water Spray Play Feature':                   {long:1.50},
+      '04 Playground Equipment::Creative Sand/Nature Play Zone':   {long:2.50},
+      /* 05 CCTV Cameras */
+      '05 CCTV Cameras::Park Entrance/Exit Camera':                          {tall:1.75},
+      '05 CCTV Cameras::Sports Zone/Stadium Camera':                 {tall:1.75},
+      '05 CCTV Cameras::Running Track/Blind Spot Camera':                 {tall:1.75},
+      '05 CCTV Cameras::Pond/Risk Area Camera':                {tall:1.75},
+      /* 06 Public Water Fountains */
+      '06 Public Water Fountains::Drinking Water with Bottle Refill':                    {tall:1.20},
+      '06 Public Water Fountains::Wheelchair-accessible Fountain':                  {tall:0.90},
+      '06 Public Water Fountains::Water/Handwash near Playground':            {tall:1.00},
+      '06 Public Water Fountains::Pet Water Station':                   {tall:0.40},
+      /* 07 Lighting */
+      '07 Lighting::General Pathway Light Pole':                            {tall:4.00},
+      '07 Lighting::Sports Field Spotlight':                         {tall:6.00},
+      '07 Lighting::Pond/Boardwalk Ambient Light':                {tall:1.25},
+      '07 Lighting::Smart Solar Light':                             {tall:5.00},
+      /* 08 Shelters/Roofed Areas */
+      '08 Shelters/Roofed Areas::Open-air Sun/Rain Shelter':              {long:5.00},
+      '08 Shelters/Roofed Areas::Pergola with Climbing Plants':                  {long:5.00},
+      '08 Shelters/Roofed Areas::Roof over Spectator Seating':                  {long:6.00},
+      '08 Shelters/Roofed Areas::Waiting/Meeting Archway':                          {long:4.00},
+      /* 09 Public Lockers */
+      '09 Public Lockers::Runner/Athlete Locker':          {long:1.50},
+      '09 Public Lockers::City Events Storage Locker':           {long:2.50},
+      '09 Public Lockers::Equipment Lending Locker':            {long:2.50},
       /* 10 AED */
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED จุดศูนย์กลางสวน':            {tall:1.40},
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED โซนสนามกีฬา':                {tall:1.40},
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED ใกล้ทางวิ่งระยะไกล':         {tall:1.40},
-      /* 11 จุดทิ้งขยะ */
-      '11 จุดทิ้งขยะ::ถังขยะแยกประเภท':                                {long:1.50},
-      '11 จุดทิ้งขยะ::ถังขยะริมทางวิ่งแบบจุดย่อย':                     {tall:0.80},
-      '11 จุดทิ้งขยะ::ถังทิ้งมูลสัตว์เลี้ยง':                          {tall:1.00},
-      /* 12 ลำโพงกระจายเสียง */
-      '12 ลำโพงกระจายเสียง::ระบบประกาศฉุกเฉินทั่วสวน':                 {tall:4.00},
-      '12 ลำโพงกระจายเสียง::ลำโพงโซนสนามกีฬาและกิจกรรม':               {tall:2.00},
-      '12 ลำโพงกระจายเสียง::ลำโพงดนตรีบรรยากาศโซนพักผ่อน':             {tall:1.50},
-      '12 ลำโพงกระจายเสียง::จุดประกาศสองภาษา/ข้อมูลสวน':               {tall:1.50},
+      '10 AED Defibrillators::AED Cabinet – Park Centre':            {tall:1.40},
+      '10 AED Defibrillators::AED Cabinet – Sports Zone':                {tall:1.40},
+      '10 AED Defibrillators::AED Cabinet – Long-distance Track':         {tall:1.40},
+      /* 11 Waste Disposal */
+      '11 Waste Disposal::Sorted Recycling Bins':                                {long:1.50},
+      '11 Waste Disposal::Running Path Sub-station Bin':                     {tall:0.80},
+      '11 Waste Disposal::Pet Waste Bin':                          {tall:1.00},
+      /* 12 Public Address Speakers */
+      '12 Public Address Speakers::Park-wide Emergency Announcement':                 {tall:4.00},
+      '12 Public Address Speakers::Sports & Activity Zone Speaker':               {tall:2.00},
+      '12 Public Address Speakers::Relaxation Zone Ambient Speaker':             {tall:1.50},
+      '12 Public Address Speakers::Bilingual Announcement/Park Info Point':               {tall:1.50},
       /* 13 ป้ายและระบบ Wayfinding */
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายแผนที่สวนแบบรวม':       {tall:2.20},
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายบอกทิศทางแบบเสาเข็ม':  {tall:2.00},
-      '13 ป้ายและระบบ Wayfinding / Signage::หมุดระยะทางลู่วิ่ง':        {tall:0.80},
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายกติกาการใช้พื้นที่/สนาม':{tall:1.80},
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายเตือนความเสี่ยงริมบ่อน้ำ':{tall:1.50},
+      '13 Signs & Wayfinding / Signage::Integrated Park Map Sign':       {tall:2.20},
+      '13 Signs & Wayfinding / Signage::Post-mounted Directional Sign':  {tall:2.00},
+      '13 Signs & Wayfinding / Signage::Running Track Distance Marker':        {tall:0.80},
+      '13 Signs & Wayfinding / Signage::Area/Facility Usage Rules Sign':{tall:1.80},
+      '13 Signs & Wayfinding / Signage::Pond-side Hazard Warning Sign':{tall:1.50},
       /* 14 ร่มเงา–ต้นไม้–ภูมิทัศน์ */
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::แนวไม้ให้ร่มตามทางวิ่ง':     {long:4.50},
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::แปลงพุ่มเตี้ย':              {long:2.00},
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::ลานหญ้าใช้งานพร้อมร่มเงา':   {long:7.00},
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::โครงบังแดดแบบเบา':           {long:10.00},
+      '14 Shade Trees – Functional Landscape::Shade Tree Line along Running Path':     {long:4.50},
+      '14 Shade Trees – Functional Landscape::Low Shrub Bed':              {long:2.00},
+      '14 Shade Trees – Functional Landscape::Functional Lawn with Shade':   {long:7.00},
+      '14 Shade Trees – Functional Landscape::Lightweight Sunshade Structure':           {long:10.00},
       /* 15 ความปลอดภัย */
-      '15 ความปลอดภัยและขอความช่วยเหลือ::เสาฉุกเฉิน SOS พร้อมไฟและสัญญาณ':{tall:2.00},
-      '15 ความปลอดภัยและขอความช่วยเหลือ::จุดปฐมพยาบาลพื้นฐาน':         {long:1.00},
-      '15 ความปลอดภัยและขอความช่วยเหลือ::ป้ายรหัสโซน/พิกัดสวนสำหรับแจ้งเหตุ':{tall:1.50},
-      '15 ความปลอดภัยและขอความช่วยเหลือ::ราวกันตกและขอบกันลื่นริมบ่อน้ำ':{long:3.00},
-      '15 ความปลอดภัยและขอความช่วยเหลือ::จุดเจ้าหน้าที่/ตู้สื่อสารบริการ':{long:1.0},
+      '15 Safety & Assistance::SOS Emergency Post with Lights & Signal':{tall:2.00},
+      '15 Safety & Assistance::Basic First Aid Station':         {long:1.00},
+      '15 Safety & Assistance::Zone Code/Park Coordinate Sign':{tall:1.50},
+      '15 Safety & Assistance::Guardrails & Non-slip Edges by Pond':{long:3.00},
+      '15 Safety & Assistance::Staff Station/Service Kiosk':{long:1.0},
       /* 16 จักรยาน */
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::ที่จอดจักรยานแบบ U-Rack': {long:1.0},
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::จุดจอดสกู๊ตเตอร์/ไมโครโมบิลิตี้แบบจัดระเบียบ':{long:2.0},
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::จุดซ่อมจักรยานพร้อมปั๊มลม':{tall:0.525},
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::มาตรการชะลอความเร็ว':      {long:3.0},
-      /* 17 ห้องน้ำสาธารณะ */
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำขนาดเล็กแยกเพศแบบแยกห้อง':           {long:4.0},
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำขนาดกลาง แยกเพศ เพศละ 2 ห้อง':       {long:4.00},
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำใหญ่สุดพร้อมห้องอาบน้ำ':             {long:4.00},
-      '17 ห้องน้ำสาธารณะ::จุดล้างมือ–ล้างเท้าด้านนอก':                 {long:2.0},
-      /* 18 คน: fallback 2m */
-            '18 คน::คน 01': {tall: .3},
-      '18 คน::คน 02': {tall:3},
-      '18 คน::คน 03': {tall:1.0},
-      '18 คน::คน 04': {tall:1},
-      '18 คน::คน 05': {tall:1},
+      '16 Bicycle & Micromobility::U-Rack Bicycle Parking': {long:1.0},
+      '16 Bicycle & Micromobility::Organized Scooter/Micromobility Parking':{long:2.0},
+      '16 Bicycle & Micromobility::Bicycle Repair Station with Air Pump':{tall:0.525},
+      '16 Bicycle & Micromobility::Speed Calming Measures':      {long:3.0},
+      /* 17 Public Restrooms */
+      '17 Public Restrooms::Small Gender-separated Restroom':           {long:4.0},
+      '17 Public Restrooms::Medium Restroom – 2 Stalls per Gender':       {long:4.00},
+      '17 Public Restrooms::Large Restroom with Showers':             {long:4.00},
+      '17 Public Restrooms::Exterior Hand & Foot Wash Station':                 {long:2.0},
+      /* 18 People: fallback 2m */
+            '18 People::Person 01': {tall: .3},
+      '18 People::Person 02': {tall:3},
+      '18 People::Person 03': {tall:1.0},
+      '18 People::Person 04': {tall:1},
+      '18 People::Person 05': {tall:1},
     };
 
     /* ═════════════════════════════════════════════════════════════════
@@ -744,196 +743,196 @@
        ตัวอย่าง: 1.0 = 100% (ไม่เปลี่ยน), 0.8 = ลด 20%, 1.5 = เพิ่ม 50%
        ═════════════════════════════════════════════════════════════════ */
     const MODEL_SCALE_MULTIPLIER = {
-      /* 01 เก้าอี้ */
-      '01 เก้าอี้::เก้าอี้สนามแบบม้านั่งเตี้ย':                        1.0,
-      '01 เก้าอี้::เก้าอี้ชมสนามกีฬาแบบอัฒจันทร์ย่อม':                1.0,
-      '01 เก้าอี้::เก้าอี้มีพนักพิงพร้อมที่วางแขน':                    1.0,
-      '01 เก้าอี้::เก้าอี้วงกลมรอบต้นไม้':                             1.0,
-      '01 เก้าอี้::เก้าอี้เอนกาย/เก้าอี้นอนสนาม':                     1.0,
-      /* 02 โต๊ะ */
-      '02 โต๊ะ::โต๊ะปิกนิกพร้อมม้านั่ง':                              1.0,
-      '02 โต๊ะ::โต๊ะบาร์ยืน/โต๊ะสูงริมทางวิ่ง':                       1.0,
-      '02 โต๊ะ::โต๊ะหมากรุก/เกมกระดาน':                                1.0,
-      '02 โต๊ะ::โต๊ะทำงานกลางแจ้ง':                                    1.0,
-      /* 03 เครื่องออกกำลังกาย */
-      '03 เครื่องออกกำลังกาย::สเตชั่นยืดเหยียด/คูลดาวน์':             1.5,
-      '03 เครื่องออกกำลังกาย::เครื่องฝึกแรงต้านแบบน้ำหนักตัว':         1.2,
-      '03 เครื่องออกกำลังกาย::เครื่องคาร์ดิโอแบบกลางแจ้ง':             1.0,
-      '03 เครื่องออกกำลังกาย::สเตชั่นฝึกสมดุล/ผู้สูงอายุ':             3.0,
-      '03 เครื่องออกกำลังกาย::โซนเวทแบบใช้ดัมบ์เบลกลางแจ้ง':           3.0,
-      /* 04 เครื่องเล่นเด็ก */
-      '04 เครื่องเล่นเด็ก::โครงปีนหน้าผา/ผนังปีน':                    1.0,
-      '04 เครื่องเล่นเด็ก::ชุดสไลเดอร์–หอคอย–สะพาน':                  1.0,
-      '04 เครื่องเล่นเด็ก::ชิงช้าแบบปลอดภัย':                          1.0,
-      '04 เครื่องเล่นเด็ก::เครื่องเล่นน้ำแบบพ่นฝอย':                   1.0,
-      '04 เครื่องเล่นเด็ก::โซนเล่นเชิงสร้างสรรค์ด้วยทราย/ธรรมชาติ':   1.0,
-      /* 05 กล้องวงจรปิด */
-      '05 กล้องวงจรปิด::กล้องทางเข้า–ออกสวน':                          1.0,
-      '05 กล้องวงจรปิด::กล้องโซนสนามกีฬาและอัฒจันทร์':                 1.0,
-      '05 กล้องวงจรปิด::กล้องตามทางวิ่งและจุดอับสายตา':                 1.0,
-      '05 กล้องวงจรปิด::กล้องใกล้บ่อน้ำ/พื้นที่เสี่ยง':                1.0,
-      /* 06 ตู้กดน้ำสาธารณะ */
-      '06 ตู้กดน้ำสาธารณะ::น้ำดื่มพร้อมที่เติมขวด':                    1.0,
-      '06 ตู้กดน้ำสาธารณะ::ตู้กดน้ำแบบเข้าถึงรถเข็น':                  1.0,
-      '06 ตู้กดน้ำสาธารณะ::จุดน้ำ–ล้างมือใกล้สนามเด็กเล่น':            1.0,
-      '06 ตู้กดน้ำสาธารณะ::จุดน้ำสำหรับสัตว์เลี้ยง':                   1.0,
-      /* 07 ไฟส่องสว่าง */
-      '07 ไฟส่องสว่าง::เสาไฟทางเดินทั่วไป':                            1.0,
-      '07 ไฟส่องสว่าง::ไฟสปอร์ตไลท์สนามกีฬา':                         1.0,
-      '07 ไฟส่องสว่าง::ไฟบรรยากาศริมบ่อน้ำ/ทางเดินไม้':                1.0,
-      '07 ไฟส่องสว่าง::ไฟโซลาร์อัจฉริยะ':                             1.0,
-      /* 08 ที่หลบฝน/หลังคา */
-      '08 ที่หลบฝน/หลังคา::ศาลากันแดด–กันฝนแบบเปิดโล่ง':              1.0,
-      '08 ที่หลบฝน/หลังคา::เพอร์โกลาพร้อมไม้เลื้อย':                  1.0,
-      '08 ที่หลบฝน/หลังคา::หลังคาคลุมจุดนั่งชมสนาม':                  1.0,
-      '08 ที่หลบฝน/หลังคา::ซุ้มรอ–จุดนัดพบ':                          1.0,
-      /* 09 ตู้ล็อคเกอร์สาธารณะ */
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ล็อคเกอร์นักวิ่ง–นักกีฬา':          1.0,
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ฝากของสำหรับกิจกรรมเมือง':           1.0,
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ล็อคเกอร์อุปกรณ์ยืมใช้':            1.0,
+      /* 01 Seating */
+      '01 Seating::Low Park Bench':                        1.0,
+      '01 Seating::Stadium Seating Bench':                1.0,
+      '01 Seating::Armrest Bench':                    1.0,
+      '01 Seating::Circular Tree Bench':                             1.0,
+      '01 Seating::Reclining/Lounger Chair':                     1.0,
+      /* 02 Tables */
+      '02 Tables::Picnic Table with Benches':                              1.0,
+      '02 Tables::Bar/High Table along Running Path':                       1.0,
+      '02 Tables::Chess/Board Game Table':                                1.0,
+      '02 Tables::Outdoor Work Table':                                    1.0,
+      /* 03 Exercise Equipment */
+      '03 Exercise Equipment::Stretch/Cool-down Station':             1.5,
+      '03 Exercise Equipment::Bodyweight Resistance Trainer':         1.2,
+      '03 Exercise Equipment::Outdoor Cardio Machine':             1.0,
+      '03 Exercise Equipment::Balance Training/Senior Station':             3.0,
+      '03 Exercise Equipment::Outdoor Dumbbell Weight Zone':           3.0,
+      /* 04 Playground Equipment */
+      '04 Playground Equipment::Climbing Frame/Wall':                    1.0,
+      '04 Playground Equipment::Slide–Tower–Bridge Set':                  1.0,
+      '04 Playground Equipment::Safety Swing':                          1.0,
+      '04 Playground Equipment::Water Spray Play Feature':                   1.0,
+      '04 Playground Equipment::Creative Sand/Nature Play Zone':   1.0,
+      /* 05 CCTV Cameras */
+      '05 CCTV Cameras::Park Entrance/Exit Camera':                          1.0,
+      '05 CCTV Cameras::Sports Zone/Stadium Camera':                 1.0,
+      '05 CCTV Cameras::Running Track/Blind Spot Camera':                 1.0,
+      '05 CCTV Cameras::Pond/Risk Area Camera':                1.0,
+      /* 06 Public Water Fountains */
+      '06 Public Water Fountains::Drinking Water with Bottle Refill':                    1.0,
+      '06 Public Water Fountains::Wheelchair-accessible Fountain':                  1.0,
+      '06 Public Water Fountains::Water/Handwash near Playground':            1.0,
+      '06 Public Water Fountains::Pet Water Station':                   1.0,
+      /* 07 Lighting */
+      '07 Lighting::General Pathway Light Pole':                            1.0,
+      '07 Lighting::Sports Field Spotlight':                         1.0,
+      '07 Lighting::Pond/Boardwalk Ambient Light':                1.0,
+      '07 Lighting::Smart Solar Light':                             1.0,
+      /* 08 Shelters/Roofed Areas */
+      '08 Shelters/Roofed Areas::Open-air Sun/Rain Shelter':              1.0,
+      '08 Shelters/Roofed Areas::Pergola with Climbing Plants':                  1.0,
+      '08 Shelters/Roofed Areas::Roof over Spectator Seating':                  1.0,
+      '08 Shelters/Roofed Areas::Waiting/Meeting Archway':                          1.0,
+      /* 09 Public Lockers */
+      '09 Public Lockers::Runner/Athlete Locker':          1.0,
+      '09 Public Lockers::City Events Storage Locker':           1.0,
+      '09 Public Lockers::Equipment Lending Locker':            1.0,
       /* 10 AED */
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED จุดศูนย์กลางสวน':            1.0,
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED โซนสนามกีฬา':                1.0,
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED ใกล้ทางวิ่งระยะไกล':         1.0,
-      /* 11 จุดทิ้งขยะ */
-      '11 จุดทิ้งขยะ::ถังขยะแยกประเภท':                                1.0,
-      '11 จุดทิ้งขยะ::ถังขยะริมทางวิ่งแบบจุดย่อย':                     1.0,
-      '11 จุดทิ้งขยะ::ถังทิ้งมูลสัตว์เลี้ยง':                          1.0,
-      /* 12 ลำโพงกระจายเสียง */
-      '12 ลำโพงกระจายเสียง::ระบบประกาศฉุกเฉินทั่วสวน':                 1.0,
-      '12 ลำโพงกระจายเสียง::ลำโพงโซนสนามกีฬาและกิจกรรม':               0.5,
-      '12 ลำโพงกระจายเสียง::ลำโพงดนตรีบรรยากาศโซนพักผ่อน':             0.5,
-      '12 ลำโพงกระจายเสียง::จุดประกาศสองภาษา/ข้อมูลสวน':               1.0,
+      '10 AED Defibrillators::AED Cabinet – Park Centre':            1.0,
+      '10 AED Defibrillators::AED Cabinet – Sports Zone':                1.0,
+      '10 AED Defibrillators::AED Cabinet – Long-distance Track':         1.0,
+      /* 11 Waste Disposal */
+      '11 Waste Disposal::Sorted Recycling Bins':                                1.0,
+      '11 Waste Disposal::Running Path Sub-station Bin':                     1.0,
+      '11 Waste Disposal::Pet Waste Bin':                          1.0,
+      /* 12 Public Address Speakers */
+      '12 Public Address Speakers::Park-wide Emergency Announcement':                 1.0,
+      '12 Public Address Speakers::Sports & Activity Zone Speaker':               0.5,
+      '12 Public Address Speakers::Relaxation Zone Ambient Speaker':             0.5,
+      '12 Public Address Speakers::Bilingual Announcement/Park Info Point':               1.0,
       /* 13 ป้ายและระบบ Wayfinding */
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายแผนที่สวนแบบรวม':       1.0,
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายบอกทิศทางแบบเสาเข็ม':  1.0,
-      '13 ป้ายและระบบ Wayfinding / Signage::หมุดระยะทางลู่วิ่ง':        1.0,
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายกติกาการใช้พื้นที่/สนาม':1.0,
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายเตือนความเสี่ยงริมบ่อน้ำ':0.5,
+      '13 Signs & Wayfinding / Signage::Integrated Park Map Sign':       1.0,
+      '13 Signs & Wayfinding / Signage::Post-mounted Directional Sign':  1.0,
+      '13 Signs & Wayfinding / Signage::Running Track Distance Marker':        1.0,
+      '13 Signs & Wayfinding / Signage::Area/Facility Usage Rules Sign':1.0,
+      '13 Signs & Wayfinding / Signage::Pond-side Hazard Warning Sign':0.5,
       /* 14 ร่มเงา–ต้นไม้–ภูมิทัศน์ */
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::แนวไม้ให้ร่มตามทางวิ่ง':     1.0,
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::แปลงพุ่มเตี้ย':              1.0,
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::ลานหญ้าใช้งานพร้อมร่มเงา':   1.0,
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::โครงบังแดดแบบเบา':           1.0,
+      '14 Shade Trees – Functional Landscape::Shade Tree Line along Running Path':     1.0,
+      '14 Shade Trees – Functional Landscape::Low Shrub Bed':              1.0,
+      '14 Shade Trees – Functional Landscape::Functional Lawn with Shade':   1.0,
+      '14 Shade Trees – Functional Landscape::Lightweight Sunshade Structure':           1.0,
       /* 15 ความปลอดภัย */
-      '15 ความปลอดภัยและขอความช่วยเหลือ::เสาฉุกเฉิน SOS พร้อมไฟและสัญญาณ':1.0,
-      '15 ความปลอดภัยและขอความช่วยเหลือ::จุดปฐมพยาบาลพื้นฐาน':         1.0,
-      '15 ความปลอดภัยและขอความช่วยเหลือ::ป้ายรหัสโซน/พิกัดสวนสำหรับแจ้งเหตุ':1.0,
-      '15 ความปลอดภัยและขอความช่วยเหลือ::ราวกันตกและขอบกันลื่นริมบ่อน้ำ':1.0,
-      '15 ความปลอดภัยและขอความช่วยเหลือ::จุดเจ้าหน้าที่/ตู้สื่อสารบริการ':1.0,
+      '15 Safety & Assistance::SOS Emergency Post with Lights & Signal':1.0,
+      '15 Safety & Assistance::Basic First Aid Station':         1.0,
+      '15 Safety & Assistance::Zone Code/Park Coordinate Sign':1.0,
+      '15 Safety & Assistance::Guardrails & Non-slip Edges by Pond':1.0,
+      '15 Safety & Assistance::Staff Station/Service Kiosk':1.0,
       /* 16 จักรยาน */
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::ที่จอดจักรยานแบบ U-Rack': 1.0,
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::จุดจอดสกู๊ตเตอร์/ไมโครโมบิลิตี้แบบจัดระเบียบ':1.0,
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::จุดซ่อมจักรยานพร้อมปั๊มลม':1.0,
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::มาตรการชะลอความเร็ว':      1.0,
-      /* 17 ห้องน้ำสาธารณะ */
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำขนาดเล็กแยกเพศแบบแยกห้อง':           1.0,
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำขนาดกลาง แยกเพศ เพศละ 2 ห้อง':       1.0,
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำใหญ่สุดพร้อมห้องอาบน้ำ':             1.0,
-      '17 ห้องน้ำสาธารณะ::จุดล้างมือ–ล้างเท้าด้านนอก':                 1.0,
-      /* 18 คน */
-      '18 คน::คน 01': 1.0,
-      '18 คน::คน 02': .35,
-      '18 คน::คน 03': 1.0,
-      '18 คน::คน 04': .25,
-      '18 คน::คน 05': .7,
+      '16 Bicycle & Micromobility::U-Rack Bicycle Parking': 1.0,
+      '16 Bicycle & Micromobility::Organized Scooter/Micromobility Parking':1.0,
+      '16 Bicycle & Micromobility::Bicycle Repair Station with Air Pump':1.0,
+      '16 Bicycle & Micromobility::Speed Calming Measures':      1.0,
+      /* 17 Public Restrooms */
+      '17 Public Restrooms::Small Gender-separated Restroom':           1.0,
+      '17 Public Restrooms::Medium Restroom – 2 Stalls per Gender':       1.0,
+      '17 Public Restrooms::Large Restroom with Showers':             1.0,
+      '17 Public Restrooms::Exterior Hand & Foot Wash Station':                 1.0,
+      /* 18 People */
+      '18 People::Person 01': 1.0,
+      '18 People::Person 02': .35,
+      '18 People::Person 03': 1.0,
+      '18 People::Person 04': .25,
+      '18 People::Person 05': .7,
     };
 
     /* ─ ITEM_SCALE_MUL: Individual scale multiplier for each item (1.0 = 100% original) ─ */
     const ITEM_SCALE_MUL = {
-      /* 01 เก้าอี้ */
-      '01 เก้าอี้::เก้าอี้สนามแบบม้านั่งเตี้ย':                        1.0,
-      '01 เก้าอี้::เก้าอี้ชมสนามกีฬาแบบอัฒจันทร์ย่อม':                1.0,
-      '01 เก้าอี้::เก้าอี้มีพนักพิงพร้อมที่วางแขน':                    1.0,
-      '01 เก้าอี้::เก้าอี้วงกลมรอบต้นไม้':                             1.0,
-      '01 เก้าอี้::เก้าอี้เอนกาย/เก้าอี้นอนสนาม':                     1.0,
-      /* 02 โต๊ะ */
-      '02 โต๊ะ::โต๊ะปิกนิกพร้อมม้านั่ง':                              1.0,
-      '02 โต๊ะ::โต๊ะบาร์ยืน/โต๊ะสูงริมทางวิ่ง':                       1.0,
-      '02 โต๊ะ::โต๊ะหมากรุก/เกมกระดาน':                                1.0,
-      '02 โต๊ะ::โต๊ะทำงานกลางแจ้ง':                                    1.0,
-      /* 03 เครื่องออกกำลังกาย */
-      '03 เครื่องออกกำลังกาย::สเตชั่นยืดเหยียด/คูลดาวน์':             1.5,
-      '03 เครื่องออกกำลังกาย::เครื่องฝึกแรงต้านแบบน้ำหนักตัว':         1.2,
-      '03 เครื่องออกกำลังกาย::เครื่องคาร์ดิโอแบบกลางแจ้ง':             1.0,
-      '03 เครื่องออกกำลังกาย::สเตชั่นฝึกสมดุล/ผู้สูงอายุ':             3.0,
-      '03 เครื่องออกกำลังกาย::โซนเวทแบบใช้ดัมบ์เบลกลางแจ้ง':           3.0,
-      /* 04 เครื่องเล่นเด็ก */
-      '04 เครื่องเล่นเด็ก::โครงปีนหน้าผา/ผนังปีน':                    1.0,
-      '04 เครื่องเล่นเด็ก::ชุดสไลเดอร์–หอคอย–สะพาน':                  1.0,
-      '04 เครื่องเล่นเด็ก::ชิงช้าแบบปลอดภัย':                          1.0,
-      '04 เครื่องเล่นเด็ก::เครื่องเล่นน้ำแบบพ่นฝอย':                   1.0,
-      '04 เครื่องเล่นเด็ก::โซนเล่นเชิงสร้างสรรค์ด้วยทราย/ธรรมชาติ':   1.0,
-      /* 05 กล้องวงจรปิด */
-      '05 กล้องวงจรปิด::กล้องทางเข้า–ออกสวน':                          1.0,
-      '05 กล้องวงจรปิด::กล้องโซนสนามกีฬาและอัฒจันทร์':                 1.0,
-      '05 กล้องวงจรปิด::กล้องตามทางวิ่งและจุดอับสายตา':                 1.0,
-      '05 กล้องวงจรปิด::กล้องใกล้บ่อน้ำ/พื้นที่เสี่ยง':                1.0,
-      /* 06 ตู้กดน้ำสาธารณะ */
-      '06 ตู้กดน้ำสาธารณะ::น้ำดื่มพร้อมที่เติมขวด':                    1.0,
-      '06 ตู้กดน้ำสาธารณะ::ตู้กดน้ำแบบเข้าถึงรถเข็น':                  1.0,
-      '06 ตู้กดน้ำสาธารณะ::จุดน้ำ–ล้างมือใกล้สนามเด็กเล่น':            1.0,
-      '06 ตู้กดน้ำสาธารณะ::จุดน้ำสำหรับสัตว์เลี้ยง':                   1.0,
-      /* 07 ไฟส่องสว่าง */
-      '07 ไฟส่องสว่าง::เสาไฟทางเดินทั่วไป':                            1.0,
-      '07 ไฟส่องสว่าง::ไฟสปอร์ตไลท์สนามกีฬา':                         1.0,
-      '07 ไฟส่องสว่าง::ไฟบรรยากาศริมบ่อน้ำ/ทางเดินไม้':                1.0,
-      '07 ไฟส่องสว่าง::ไฟโซลาร์อัจฉริยะ':                             1.0,
-      /* 08 ที่หลบฝน/หลังคา */
-      '08 ที่หลบฝน/หลังคา::ศาลากันแดด–กันฝนแบบเปิดโล่ง':              1.0,
-      '08 ที่หลบฝน/หลังคา::เพอร์โกลาพร้อมไม้เลื้อย':                  1.0,
-      '08 ที่หลบฝน/หลังคา::หลังคาคลุมจุดนั่งชมสนาม':                  1.0,
-      '08 ที่หลบฝน/หลังคา::ซุ้มรอ–จุดนัดพบ':                          1.0,
-      /* 09 ตู้ล็อคเกอร์สาธารณะ */
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ล็อคเกอร์นักวิ่ง–นักกีฬา':          1.0,
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ฝากของสำหรับกิจกรรมเมือง':           1.0,
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ล็อคเกอร์อุปกรณ์ยืมใช้':            1.0,
+      /* 01 Seating */
+      '01 Seating::Low Park Bench':                        1.0,
+      '01 Seating::Stadium Seating Bench':                1.0,
+      '01 Seating::Armrest Bench':                    1.0,
+      '01 Seating::Circular Tree Bench':                             1.0,
+      '01 Seating::Reclining/Lounger Chair':                     1.0,
+      /* 02 Tables */
+      '02 Tables::Picnic Table with Benches':                              1.0,
+      '02 Tables::Bar/High Table along Running Path':                       1.0,
+      '02 Tables::Chess/Board Game Table':                                1.0,
+      '02 Tables::Outdoor Work Table':                                    1.0,
+      /* 03 Exercise Equipment */
+      '03 Exercise Equipment::Stretch/Cool-down Station':             1.5,
+      '03 Exercise Equipment::Bodyweight Resistance Trainer':         1.2,
+      '03 Exercise Equipment::Outdoor Cardio Machine':             1.0,
+      '03 Exercise Equipment::Balance Training/Senior Station':             3.0,
+      '03 Exercise Equipment::Outdoor Dumbbell Weight Zone':           3.0,
+      /* 04 Playground Equipment */
+      '04 Playground Equipment::Climbing Frame/Wall':                    1.0,
+      '04 Playground Equipment::Slide–Tower–Bridge Set':                  1.0,
+      '04 Playground Equipment::Safety Swing':                          1.0,
+      '04 Playground Equipment::Water Spray Play Feature':                   1.0,
+      '04 Playground Equipment::Creative Sand/Nature Play Zone':   1.0,
+      /* 05 CCTV Cameras */
+      '05 CCTV Cameras::Park Entrance/Exit Camera':                          1.0,
+      '05 CCTV Cameras::Sports Zone/Stadium Camera':                 1.0,
+      '05 CCTV Cameras::Running Track/Blind Spot Camera':                 1.0,
+      '05 CCTV Cameras::Pond/Risk Area Camera':                1.0,
+      /* 06 Public Water Fountains */
+      '06 Public Water Fountains::Drinking Water with Bottle Refill':                    1.0,
+      '06 Public Water Fountains::Wheelchair-accessible Fountain':                  1.0,
+      '06 Public Water Fountains::Water/Handwash near Playground':            1.0,
+      '06 Public Water Fountains::Pet Water Station':                   1.0,
+      /* 07 Lighting */
+      '07 Lighting::General Pathway Light Pole':                            1.0,
+      '07 Lighting::Sports Field Spotlight':                         1.0,
+      '07 Lighting::Pond/Boardwalk Ambient Light':                1.0,
+      '07 Lighting::Smart Solar Light':                             1.0,
+      /* 08 Shelters/Roofed Areas */
+      '08 Shelters/Roofed Areas::Open-air Sun/Rain Shelter':              1.0,
+      '08 Shelters/Roofed Areas::Pergola with Climbing Plants':                  1.0,
+      '08 Shelters/Roofed Areas::Roof over Spectator Seating':                  1.0,
+      '08 Shelters/Roofed Areas::Waiting/Meeting Archway':                          1.0,
+      /* 09 Public Lockers */
+      '09 Public Lockers::Runner/Athlete Locker':          1.0,
+      '09 Public Lockers::City Events Storage Locker':           1.0,
+      '09 Public Lockers::Equipment Lending Locker':            1.0,
       /* 10 AED */
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED จุดศูนย์กลางสวน':            1.0,
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED โซนสนามกีฬา':                1.0,
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED ใกล้ทางวิ่งระยะไกล':         1.0,
-      /* 11 จุดทิ้งขยะ */
-      '11 จุดทิ้งขยะ::ถังขยะแยกประเภท':                                1.0,
-      '11 จุดทิ้งขยะ::ถังขยะริมทางวิ่งแบบจุดย่อย':                     1.0,
-      '11 จุดทิ้งขยะ::ถังทิ้งมูลสัตว์เลี้ยง':                          1.0,
-      /* 12 ลำโพงกระจายเสียง */
-      '12 ลำโพงกระจายเสียง::ระบบประกาศฉุกเฉินทั่วสวน':                 1.0,
-      '12 ลำโพงกระจายเสียง::ลำโพงโซนสนามกีฬาและกิจกรรม':               1.0,
-      '12 ลำโพงกระจายเสียง::ลำโพงดนตรีบรรยากาศโซนพักผ่อน':             1.0,
-      '12 ลำโพงกระจายเสียง::จุดประกาศสองภาษา/ข้อมูลสวน':               1.0,
+      '10 AED Defibrillators::AED Cabinet – Park Centre':            1.0,
+      '10 AED Defibrillators::AED Cabinet – Sports Zone':                1.0,
+      '10 AED Defibrillators::AED Cabinet – Long-distance Track':         1.0,
+      /* 11 Waste Disposal */
+      '11 Waste Disposal::Sorted Recycling Bins':                                1.0,
+      '11 Waste Disposal::Running Path Sub-station Bin':                     1.0,
+      '11 Waste Disposal::Pet Waste Bin':                          1.0,
+      /* 12 Public Address Speakers */
+      '12 Public Address Speakers::Park-wide Emergency Announcement':                 1.0,
+      '12 Public Address Speakers::Sports & Activity Zone Speaker':               1.0,
+      '12 Public Address Speakers::Relaxation Zone Ambient Speaker':             1.0,
+      '12 Public Address Speakers::Bilingual Announcement/Park Info Point':               1.0,
       /* 13 ป้ายและระบบ Wayfinding */
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายแผนที่สวนแบบรวม':       1.0,
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายบอกทิศทางแบบเสาเข็ม':  1.0,
-      '13 ป้ายและระบบ Wayfinding / Signage::หมุดระยะทางลู่วิ่ง':        1.0,
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายกติกาการใช้พื้นที่/สนาม':1.0,
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายเตือนความเสี่ยงริมบ่อน้ำ':1.0,
+      '13 Signs & Wayfinding / Signage::Integrated Park Map Sign':       1.0,
+      '13 Signs & Wayfinding / Signage::Post-mounted Directional Sign':  1.0,
+      '13 Signs & Wayfinding / Signage::Running Track Distance Marker':        1.0,
+      '13 Signs & Wayfinding / Signage::Area/Facility Usage Rules Sign':1.0,
+      '13 Signs & Wayfinding / Signage::Pond-side Hazard Warning Sign':1.0,
       /* 14 ร่มเงา–ต้นไม้–ภูมิทัศน์ */
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::แนวไม้ให้ร่มตามทางวิ่ง':     1.0,
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::แปลงพุ่มเตี้ย':              1.0,
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::ลานหญ้าใช้งานพร้อมร่มเงา':   1.0,
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::โครงบังแดดแบบเบา':           1.0,
+      '14 Shade Trees – Functional Landscape::Shade Tree Line along Running Path':     1.0,
+      '14 Shade Trees – Functional Landscape::Low Shrub Bed':              1.0,
+      '14 Shade Trees – Functional Landscape::Functional Lawn with Shade':   1.0,
+      '14 Shade Trees – Functional Landscape::Lightweight Sunshade Structure':           1.0,
       /* 15 ความปลอดภัย */
-      '15 ความปลอดภัยและขอความช่วยเหลือ::เสาฉุกเฉิน SOS พร้อมไฟและสัญญาณ':1.0,
-      '15 ความปลอดภัยและขอความช่วยเหลือ::จุดปฐมพยาบาลพื้นฐาน':         1.0,
-      '15 ความปลอดภัยและขอความช่วยเหลือ::ป้ายรหัสโซน/พิกัดสวนสำหรับแจ้งเหตุ':1.0,
-      '15 ความปลอดภัยและขอความช่วยเหลือ::ราวกันตกและขอบกันลื่นริมบ่อน้ำ':1.0,
-      '15 ความปลอดภัยและขอความช่วยเหลือ::จุดเจ้าหน้าที่/ตู้สื่อสารบริการ':1.0,
+      '15 Safety & Assistance::SOS Emergency Post with Lights & Signal':1.0,
+      '15 Safety & Assistance::Basic First Aid Station':         1.0,
+      '15 Safety & Assistance::Zone Code/Park Coordinate Sign':1.0,
+      '15 Safety & Assistance::Guardrails & Non-slip Edges by Pond':1.0,
+      '15 Safety & Assistance::Staff Station/Service Kiosk':1.0,
       /* 16 จักรยาน */
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::ที่จอดจักรยานแบบ U-Rack': 1.0,
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::จุดจอดสกู๊ตเตอร์/ไมโครโมบิลิตี้แบบจัดระเบียบ':1.0,
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::จุดซ่อมจักรยานพร้อมปั๊มลม':1.0,
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::มาตรการชะลอความเร็ว':      1.0,
-      /* 17 ห้องน้ำสาธารณะ */
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำขนาดเล็กแยกเพศแบบแยกห้อง':           1.0,
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำขนาดกลาง แยกเพศ เพศละ 2 ห้อง':       1.0,
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำใหญ่สุดพร้อมห้องอาบน้ำ':             1.0,
-      '17 ห้องน้ำสาธารณะ::จุดล้างมือ–ล้างเท้าด้านนอก':                 1.0,
-      /* 18 คน */
-      '18 คน::คน 01': 1.0,
-      '18 คน::คน 02': .35,
-      '18 คน::คน 03': 1.0,
-      '18 คน::คน 04': .25,
-      '18 คน::คน 05': .7,
+      '16 Bicycle & Micromobility::U-Rack Bicycle Parking': 1.0,
+      '16 Bicycle & Micromobility::Organized Scooter/Micromobility Parking':1.0,
+      '16 Bicycle & Micromobility::Bicycle Repair Station with Air Pump':1.0,
+      '16 Bicycle & Micromobility::Speed Calming Measures':      1.0,
+      /* 17 Public Restrooms */
+      '17 Public Restrooms::Small Gender-separated Restroom':           1.0,
+      '17 Public Restrooms::Medium Restroom – 2 Stalls per Gender':       1.0,
+      '17 Public Restrooms::Large Restroom with Showers':             1.0,
+      '17 Public Restrooms::Exterior Hand & Foot Wash Station':                 1.0,
+      /* 18 People */
+      '18 People::Person 01': 1.0,
+      '18 People::Person 02': .35,
+      '18 People::Person 03': 1.0,
+      '18 People::Person 04': .25,
+      '18 People::Person 05': .7,
     };
 
     function getGroupTitleByKey(key){for(const[t,l]of Object.entries(GROUPS))if(l.includes(key))return t;return null;}
@@ -963,139 +962,139 @@
 
     /* ชื่อโฟลเดอร์ Supabase ต่อแต่ละกลุ่ม (ตรงตาม bucket) */
     const GROUP_FOLDER = {
-      '01 เก้าอี้':                                   '01 Chair',
-      '02 โต๊ะ':                                      '02 Tables',
-      '03 เครื่องออกกำลังกาย':                       '03 Exercise Equipment',
-      '04 เครื่องเล่นเด็ก':                          '04 Playground Equipment',
-      '05 กล้องวงจรปิด':                             '05 CCTV Cameras',
-      '06 ตู้กดน้ำสาธารณะ':                          '06 Public Water Dispensers',
-      '07 ไฟส่องสว่าง':                              '07 Lighting',
-      '08 ที่หลบฝน/หลังคา':                          '08 Rain Shelters Roof Structures',
-      '09 ตู้ล็อคเกอร์สาธารณะ':                      '09 Public Lockers',
-      '10 เครื่องกระตุกหัวใจ AED':                   '10 AED Defibrillators',
-      '11 จุดทิ้งขยะ':                               '11 Waste Disposal Points',
-      '12 ลำโพงกระจายเสียง':                         '12 Public Address Speakers',
-      '13 ป้ายและระบบ Wayfinding / Signage':          '13 Signage and Wayfinding Systems',
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน':            '14 Shade Trees Functional Landscape',
-      '15 ความปลอดภัยและขอความช่วยเหลือ':            '15 Safety and Assistance',
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้':        '16 Bicycle and Micromobility Management',
-      '17 ห้องน้ำสาธารณะ':                           '17 Public Restrooms',
-      '18 คน':                                   '18 People',
+      '01 Seating':                                   '01 Chair',
+      '02 Tables':                                      '02 Tables',
+      '03 Exercise Equipment':                       '03 Exercise Equipment',
+      '04 Playground Equipment':                          '04 Playground Equipment',
+      '05 CCTV Cameras':                             '05 CCTV Cameras',
+      '06 Public Water Fountains':                          '06 Public Water Dispensers',
+      '07 Lighting':                              '07 Lighting',
+      '08 Shelters/Roofed Areas':                          '08 Rain Shelters Roof Structures',
+      '09 Public Lockers':                      '09 Public Lockers',
+      '10 AED Defibrillators':                   '10 AED Defibrillators',
+      '11 Waste Disposal':                               '11 Waste Disposal Points',
+      '12 Public Address Speakers':                         '12 Public Address Speakers',
+      '13 Signs & Wayfinding / Signage':          '13 Signage and Wayfinding Systems',
+      '14 Shade Trees – Functional Landscape':            '14 Shade Trees Functional Landscape',
+      '15 Safety & Assistance':            '15 Safety and Assistance',
+      '16 Bicycle & Micromobility':        '16 Bicycle and Micromobility Management',
+      '17 Public Restrooms':                           '17 Public Restrooms',
+      '18 People':                                   '18 People',
     };
 
     /* ITEM_PATH: ชื่อโฟลเดอร์ย่อยตรงตามชื่อภาษาอังกฤษใน Supabase/Drive
        โครงสร้าง: {groupFolder}/{English subfolder name}/1.glb             */
     const ITEM_PATH = {
       /* ── 01 Chair ── */
-      '01 เก้าอี้::เก้าอี้สนามแบบม้านั่งเตี้ย':                          '01 Chair/A/1.glb',
-      '01 เก้าอี้::เก้าอี้ชมสนามกีฬาแบบอัฒจันทร์ย่อม':                  '01 Chair/B/1.glb',
-      '01 เก้าอี้::เก้าอี้มีพนักพิงพร้อมที่วางแขน':                      '01 Chair/C/1.glb',
-      '01 เก้าอี้::เก้าอี้วงกลมรอบต้นไม้':                               '01 Chair/D/1.glb',
-      '01 เก้าอี้::เก้าอี้เอนกาย/เก้าอี้นอนสนาม':                       '01 Chair/E/1.glb',
+      '01 Seating::Low Park Bench':                          '01 Chair/A/1.glb',
+      '01 Seating::Stadium Seating Bench':                  '01 Chair/B/1.glb',
+      '01 Seating::Armrest Bench':                      '01 Chair/C/1.glb',
+      '01 Seating::Circular Tree Bench':                               '01 Chair/D/1.glb',
+      '01 Seating::Reclining/Lounger Chair':                       '01 Chair/E/1.glb',
 
       /* ── 02 Tables ── (ชื่อโฟลเดอร์ตามภาพ Google Drive) */
-      '02 โต๊ะ::โต๊ะปิกนิกพร้อมม้านั่ง':                                '02 Tables/Table - Picnic table with benches/1.glb',
-      '02 โต๊ะ::โต๊ะบาร์ยืน/โต๊ะสูงริมทางวิ่ง':                         '02 Tables/Table - Standing bar table High table along running paths/1.glb',
-      '02 โต๊ะ::โต๊ะหมากรุก/เกมกระดาน':                                  '02 Tables/Table - Chess Board game table/1.glb',
-      '02 โต๊ะ::โต๊ะทำงานกลางแจ้ง':                                      '02 Tables/Table - Outdoor workstation/1.glb',
+      '02 Tables::Picnic Table with Benches':                                '02 Tables/Table - Picnic table with benches/1.glb',
+      '02 Tables::Bar/High Table along Running Path':                         '02 Tables/Table - Standing bar table High table along running paths/1.glb',
+      '02 Tables::Chess/Board Game Table':                                  '02 Tables/Table - Chess Board game table/1.glb',
+      '02 Tables::Outdoor Work Table':                                      '02 Tables/Table - Outdoor workstation/1.glb',
 
       /* ── 03 Exercise Equipment ── (ชื่อโฟลเดอร์ตามภาพ Google Drive) */
-      '03 เครื่องออกกำลังกาย::สเตชั่นยืดเหยียด/คูลดาวน์':               '03 Exercise Equipment/Stretching Cool-down station/1.glb',
-      '03 เครื่องออกกำลังกาย::เครื่องฝึกแรงต้านแบบน้ำหนักตัว':           '03 Exercise Equipment/Bodyweight resistance training equipment/1.glb',
-      '03 เครื่องออกกำลังกาย::เครื่องคาร์ดิโอแบบกลางแจ้ง':               '03 Exercise Equipment/Outdoor cardio equipment/1.glb',
-      '03 เครื่องออกกำลังกาย::สเตชั่นฝึกสมดุล/ผู้สูงอายุ':               '03 Exercise Equipment/Balance training station for seniors/1.glb',
-      '03 เครื่องออกกำลังกาย::โซนเวทแบบใช้ดัมบ์เบลกลางแจ้ง':             '03 Exercise Equipment/Outdoor dumbbell weight zone/1.glb',
+      '03 Exercise Equipment::Stretch/Cool-down Station':               '03 Exercise Equipment/Stretching Cool-down station/1.glb',
+      '03 Exercise Equipment::Bodyweight Resistance Trainer':           '03 Exercise Equipment/Bodyweight resistance training equipment/1.glb',
+      '03 Exercise Equipment::Outdoor Cardio Machine':               '03 Exercise Equipment/Outdoor cardio equipment/1.glb',
+      '03 Exercise Equipment::Balance Training/Senior Station':               '03 Exercise Equipment/Balance training station for seniors/1.glb',
+      '03 Exercise Equipment::Outdoor Dumbbell Weight Zone':             '03 Exercise Equipment/Outdoor dumbbell weight zone/1.glb',
 
       /* ── 04 Playground Equipment ── */
-      '04 เครื่องเล่นเด็ก::โครงปีนหน้าผา/ผนังปีน':                       '04 Playground Equipment/Climbing frame Climbing wall/1.glb',
-      '04 เครื่องเล่นเด็ก::ชุดสไลเดอร์–หอคอย–สะพาน':                    '04 Playground Equipment/Slide-Tower-Bridge play structure/1.glb',
-      '04 เครื่องเล่นเด็ก::ชิงช้าแบบปลอดภัย':                            '04 Playground Equipment/Safety swing set/1.glb',
-      '04 เครื่องเล่นเด็ก::เครื่องเล่นน้ำแบบพ่นฝอย':                     '04 Playground Equipment/Mist Spray water play feature/1.glb',
-      '04 เครื่องเล่นเด็ก::โซนเล่นเชิงสร้างสรรค์ด้วยทราย/ธรรมชาติ':     '04 Playground Equipment/Creative play zone Sand Nature-based/1.glb',
+      '04 Playground Equipment::Climbing Frame/Wall':                       '04 Playground Equipment/Climbing frame Climbing wall/1.glb',
+      '04 Playground Equipment::Slide–Tower–Bridge Set':                    '04 Playground Equipment/Slide-Tower-Bridge play structure/1.glb',
+      '04 Playground Equipment::Safety Swing':                            '04 Playground Equipment/Safety swing set/1.glb',
+      '04 Playground Equipment::Water Spray Play Feature':                     '04 Playground Equipment/Mist Spray water play feature/1.glb',
+      '04 Playground Equipment::Creative Sand/Nature Play Zone':     '04 Playground Equipment/Creative play zone Sand Nature-based/1.glb',
 
       /* ── 05 CCTV Cameras ── */
-      '05 กล้องวงจรปิด::กล้องทางเข้า–ออกสวน':                            '05 CCTV Cameras/Park entrance exit camera/1.glb',
-      '05 กล้องวงจรปิด::กล้องโซนสนามกีฬาและอัฒจันทร์':                   '05 CCTV Cameras/Sports field and grandstand camera/1.glb',
-      '05 กล้องวงจรปิด::กล้องตามทางวิ่งและจุดอับสายตา':                   '05 CCTV Cameras/Camera along running paths and blind spots/1.glb',
-      '05 กล้องวงจรปิด::กล้องใกล้บ่อน้ำ/พื้นที่เสี่ยง':                  '05 CCTV Cameras/Camera near ponds high-risk areas/1.glb',
+      '05 CCTV Cameras::Park Entrance/Exit Camera':                            '05 CCTV Cameras/Park entrance exit camera/1.glb',
+      '05 CCTV Cameras::Sports Zone/Stadium Camera':                   '05 CCTV Cameras/Sports field and grandstand camera/1.glb',
+      '05 CCTV Cameras::Running Track/Blind Spot Camera':                   '05 CCTV Cameras/Camera along running paths and blind spots/1.glb',
+      '05 CCTV Cameras::Pond/Risk Area Camera':                  '05 CCTV Cameras/Camera near ponds high-risk areas/1.glb',
 
       /* ── 06 Public Water Dispensers ── */
-      '06 ตู้กดน้ำสาธารณะ::น้ำดื่มพร้อมที่เติมขวด':                      '06 Public Water Dispensers/Drinking water with bottle-filling station/1.glb',
-      '06 ตู้กดน้ำสาธารณะ::ตู้กดน้ำแบบเข้าถึงรถเข็น':                    '06 Public Water Dispensers/Wheelchair-accessible water dispenser/1.glb',
-      '06 ตู้กดน้ำสาธารณะ::จุดน้ำ–ล้างมือใกล้สนามเด็กเล่น':              '06 Public Water Dispensers/Water hand-washing point near playground/1.glb',
-      '06 ตู้กดน้ำสาธารณะ::จุดน้ำสำหรับสัตว์เลี้ยง':                     '06 Public Water Dispensers/Water point for pets/1.glb',
+      '06 Public Water Fountains::Drinking Water with Bottle Refill':                      '06 Public Water Dispensers/Drinking water with bottle-filling station/1.glb',
+      '06 Public Water Fountains::Wheelchair-accessible Fountain':                    '06 Public Water Dispensers/Wheelchair-accessible water dispenser/1.glb',
+      '06 Public Water Fountains::Water/Handwash near Playground':              '06 Public Water Dispensers/Water hand-washing point near playground/1.glb',
+      '06 Public Water Fountains::Pet Water Station':                     '06 Public Water Dispensers/Water point for pets/1.glb',
 
       /* ── 07 Lighting ── */
-      '07 ไฟส่องสว่าง::เสาไฟทางเดินทั่วไป':                              '07 Lighting/General pathway lighting/1.glb',
-      '07 ไฟส่องสว่าง::ไฟสปอร์ตไลท์สนามกีฬา':                           '07 Lighting/Sports field floodlights/1.glb',
-      '07 ไฟส่องสว่าง::ไฟบรรยากาศริมบ่อน้ำ/ทางเดินไม้':                  '07 Lighting/Ambient lighting pond wooden walkway/1.glb',
-      '07 ไฟส่องสว่าง::ไฟโซลาร์อัจฉริยะ':                               '07 Lighting/Smart solar lighting/1.glb',
+      '07 Lighting::General Pathway Light Pole':                              '07 Lighting/General pathway lighting/1.glb',
+      '07 Lighting::Sports Field Spotlight':                           '07 Lighting/Sports field floodlights/1.glb',
+      '07 Lighting::Pond/Boardwalk Ambient Light':                  '07 Lighting/Ambient lighting pond wooden walkway/1.glb',
+      '07 Lighting::Smart Solar Light':                               '07 Lighting/Smart solar lighting/1.glb',
 
       /* ── 08 Rain Shelters Roof Structures ── */
-      '08 ที่หลบฝน/หลังคา::ศาลากันแดด–กันฝนแบบเปิดโล่ง':                '08 Rain Shelters Roof Structures/Open-air sun rain pavilion/1.glb',
-      '08 ที่หลบฝน/หลังคา::เพอร์โกลาพร้อมไม้เลื้อย':                    '08 Rain Shelters Roof Structures/Pergola with climbing plants/1.glb',
-      '08 ที่หลบฝน/หลังคา::หลังคาคลุมจุดนั่งชมสนาม':                    '08 Rain Shelters Roof Structures/Sheltered spectator seating/1.glb',
-      '08 ที่หลบฝน/หลังคา::ซุ้มรอ–จุดนัดพบ':                            '08 Rain Shelters Roof Structures/Waiting Meeting kiosk/1.glb',
+      '08 Shelters/Roofed Areas::Open-air Sun/Rain Shelter':                '08 Rain Shelters Roof Structures/Open-air sun rain pavilion/1.glb',
+      '08 Shelters/Roofed Areas::Pergola with Climbing Plants':                    '08 Rain Shelters Roof Structures/Pergola with climbing plants/1.glb',
+      '08 Shelters/Roofed Areas::Roof over Spectator Seating':                    '08 Rain Shelters Roof Structures/Sheltered spectator seating/1.glb',
+      '08 Shelters/Roofed Areas::Waiting/Meeting Archway':                            '08 Rain Shelters Roof Structures/Waiting Meeting kiosk/1.glb',
 
       /* ── 09 Public Lockers ── */
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ล็อคเกอร์นักวิ่ง–นักกีฬา':            '09 Public Lockers/Lockers for runners athletes/1.glb',
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ฝากของสำหรับกิจกรรมเมือง':             '09 Public Lockers/Storage lockers for urban events/1.glb',
-      '09 ตู้ล็อคเกอร์สาธารณะ::ตู้ล็อคเกอร์อุปกรณ์ยืมใช้':              '09 Public Lockers/Lockers for loaner equipment/1.glb',
+      '09 Public Lockers::Runner/Athlete Locker':            '09 Public Lockers/Lockers for runners athletes/1.glb',
+      '09 Public Lockers::City Events Storage Locker':             '09 Public Lockers/Storage lockers for urban events/1.glb',
+      '09 Public Lockers::Equipment Lending Locker':              '09 Public Lockers/Lockers for loaner equipment/1.glb',
 
       /* ── 10 AED Defibrillators ── */
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED จุดศูนย์กลางสวน':              '10 AED Defibrillators/AED station Park Center/1.glb',
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED โซนสนามกีฬา':                  '10 AED Defibrillators/AED station Sports Zone/1.glb',
-      '10 เครื่องกระตุกหัวใจ AED::ตู้ AED ใกล้ทางวิ่งระยะไกล':           '10 AED Defibrillators/AED station Near long-distance running track/1.glb',
+      '10 AED Defibrillators::AED Cabinet – Park Centre':              '10 AED Defibrillators/AED station Park Center/1.glb',
+      '10 AED Defibrillators::AED Cabinet – Sports Zone':                  '10 AED Defibrillators/AED station Sports Zone/1.glb',
+      '10 AED Defibrillators::AED Cabinet – Long-distance Track':           '10 AED Defibrillators/AED station Near long-distance running track/1.glb',
 
       /* ── 11 Waste Disposal Points ── */
-      '11 จุดทิ้งขยะ::ถังขยะแยกประเภท':                                  '11 Waste Disposal Points/Recycling bins Waste separation/1.glb',
-      '11 จุดทิ้งขยะ::ถังขยะริมทางวิ่งแบบจุดย่อย':                       '11 Waste Disposal Points/Pathway waste bins Sub-stations/1.glb',
-      '11 จุดทิ้งขยะ::ถังทิ้งมูลสัตว์เลี้ยง':                            '11 Waste Disposal Points/Pet waste bins/1.glb',
+      '11 Waste Disposal::Sorted Recycling Bins':                                  '11 Waste Disposal Points/Recycling bins Waste separation/1.glb',
+      '11 Waste Disposal::Running Path Sub-station Bin':                       '11 Waste Disposal Points/Pathway waste bins Sub-stations/1.glb',
+      '11 Waste Disposal::Pet Waste Bin':                            '11 Waste Disposal Points/Pet waste bins/1.glb',
 
       /* ── 12 Public Address Speakers ── */
-      '12 ลำโพงกระจายเสียง::ระบบประกาศฉุกเฉินทั่วสวน':                   '12 Public Address Speakers/Park-wide emergency announcement system/1.glb',
-      '12 ลำโพงกระจายเสียง::ลำโพงโซนสนามกีฬาและกิจกรรม':                 '12 Public Address Speakers/Speakers Sports and Activity Zones/1.glb',
-      '12 ลำโพงกระจายเสียง::ลำโพงดนตรีบรรยากาศโซนพักผ่อน':               '12 Public Address Speakers/Ambient music speakers Relaxation Zones/1.glb',
-      '12 ลำโพงกระจายเสียง::จุดประกาศสองภาษา/ข้อมูลสวน':                 '12 Public Address Speakers/Bilingual Announcement Park Information Points/1.glb',
+      '12 Public Address Speakers::Park-wide Emergency Announcement':                   '12 Public Address Speakers/Park-wide emergency announcement system/1.glb',
+      '12 Public Address Speakers::Sports & Activity Zone Speaker':                 '12 Public Address Speakers/Speakers Sports and Activity Zones/1.glb',
+      '12 Public Address Speakers::Relaxation Zone Ambient Speaker':               '12 Public Address Speakers/Ambient music speakers Relaxation Zones/1.glb',
+      '12 Public Address Speakers::Bilingual Announcement/Park Info Point':                 '12 Public Address Speakers/Bilingual Announcement Park Information Points/1.glb',
 
       /* ── 13 Signage and Wayfinding Systems ── */
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายแผนที่สวนแบบรวม':         '13 Signage and Wayfinding Systems/Integrated Park Map Signage/1.glb',
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายบอกทิศทางแบบเสาเข็ม':    '13 Signage and Wayfinding Systems/Post-mounted Directional Signage/1.glb',
-      '13 ป้ายและระบบ Wayfinding / Signage::หมุดระยะทางลู่วิ่ง':          '13 Signage and Wayfinding Systems/Running Track Distance Markers/1.glb',
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายกติกาการใช้พื้นที่/สนาม': '13 Signage and Wayfinding Systems/Area Facility Usage Rules Signage/1.glb',
-      '13 ป้ายและระบบ Wayfinding / Signage::ป้ายเตือนความเสี่ยงริมบ่อน้ำ':'13 Signage and Wayfinding Systems/Pond-side Hazard Warning Signage/1.glb',
+      '13 Signs & Wayfinding / Signage::Integrated Park Map Sign':         '13 Signage and Wayfinding Systems/Integrated Park Map Signage/1.glb',
+      '13 Signs & Wayfinding / Signage::Post-mounted Directional Sign':    '13 Signage and Wayfinding Systems/Post-mounted Directional Signage/1.glb',
+      '13 Signs & Wayfinding / Signage::Running Track Distance Marker':          '13 Signage and Wayfinding Systems/Running Track Distance Markers/1.glb',
+      '13 Signs & Wayfinding / Signage::Area/Facility Usage Rules Sign': '13 Signage and Wayfinding Systems/Area Facility Usage Rules Signage/1.glb',
+      '13 Signs & Wayfinding / Signage::Pond-side Hazard Warning Sign':'13 Signage and Wayfinding Systems/Pond-side Hazard Warning Signage/1.glb',
 
       /* ── 14 Shade Trees Functional Landscape ── */
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::แนวไม้ให้ร่มตามทางวิ่ง':       '14 Shade Trees Functional Landscape/Shade-providing Tree Lines along Running Paths/1.glb',
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::แปลงพุ่มเตี้ย':                '14 Shade Trees Functional Landscape/Low Shrub Beds/1.glb',
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::ลานหญ้าใช้งานพร้อมร่มเงา':     '14 Shade Trees Functional Landscape/Functional Lawn Areas with Shade/1.glb',
-      '14 ร่มเงา–ต้นไม้–ภูมิทัศน์ใช้งาน::โครงบังแดดแบบเบา':             '14 Shade Trees Functional Landscape/Lightweight Sunshade Structures/1.glb',
+      '14 Shade Trees – Functional Landscape::Shade Tree Line along Running Path':       '14 Shade Trees Functional Landscape/Shade-providing Tree Lines along Running Paths/1.glb',
+      '14 Shade Trees – Functional Landscape::Low Shrub Bed':                '14 Shade Trees Functional Landscape/Low Shrub Beds/1.glb',
+      '14 Shade Trees – Functional Landscape::Functional Lawn with Shade':     '14 Shade Trees Functional Landscape/Functional Lawn Areas with Shade/1.glb',
+      '14 Shade Trees – Functional Landscape::Lightweight Sunshade Structure':             '14 Shade Trees Functional Landscape/Lightweight Sunshade Structures/1.glb',
 
       /* ── 15 Safety and Assistance ── */
-      '15 ความปลอดภัยและขอความช่วยเหลือ::เสาฉุกเฉิน SOS พร้อมไฟและสัญญาณ':'15 Safety and Assistance/SOS Emergency Posts with Lights and Signals/1.glb',
-      '15 ความปลอดภัยและขอความช่วยเหลือ::จุดปฐมพยาบาลพื้นฐาน':           '15 Safety and Assistance/Basic First Aid Stations/1.glb',
-      '15 ความปลอดภัยและขอความช่วยเหลือ::ป้ายรหัสโซน/พิกัดสวนสำหรับแจ้งเหตุ':'15 Safety and Assistance/Zone Code Park Coordinate Signage for Reporting Incidents/1.glb',
-      '15 ความปลอดภัยและขอความช่วยเหลือ::ราวกันตกและขอบกันลื่นริมบ่อน้ำ':'15 Safety and Assistance/Guardrails and Non-slip Edges along Ponds/1.glb',
-      '15 ความปลอดภัยและขอความช่วยเหลือ::จุดเจ้าหน้าที่/ตู้สื่อสารบริการ':'15 Safety and Assistance/Staff Stations Service Communication Kiosks/1.glb',
+      '15 Safety & Assistance::SOS Emergency Post with Lights & Signal':'15 Safety and Assistance/SOS Emergency Posts with Lights and Signals/1.glb',
+      '15 Safety & Assistance::Basic First Aid Station':           '15 Safety and Assistance/Basic First Aid Stations/1.glb',
+      '15 Safety & Assistance::Zone Code/Park Coordinate Sign':'15 Safety and Assistance/Zone Code Park Coordinate Signage for Reporting Incidents/1.glb',
+      '15 Safety & Assistance::Guardrails & Non-slip Edges by Pond':'15 Safety and Assistance/Guardrails and Non-slip Edges along Ponds/1.glb',
+      '15 Safety & Assistance::Staff Station/Service Kiosk':'15 Safety and Assistance/Staff Stations Service Communication Kiosks/1.glb',
 
       /* ── 16 Bicycle and Micromobility Management ── */
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::ที่จอดจักรยานแบบ U-Rack':   '16 Bicycle and Micromobility Management/U-Rack Bicycle Parking/1.glb',
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::จุดจอดสกู๊ตเตอร์/ไมโครโมบิลิตี้แบบจัดระเบียบ':'16 Bicycle and Micromobility Management/Organized Scooter Micromobility Parking Zones/1.glb',
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::จุดซ่อมจักรยานพร้อมปั๊มลม': '16 Bicycle and Micromobility Management/Bicycle Repair Stations with Air Pumps/1.glb',
-      '16 การจัดการจักรยานและไมโครโมบิลิตี้::มาตรการชะลอความเร็ว':        '16 Bicycle and Micromobility Management/Speed Calming Measures/1.glb',
+      '16 Bicycle & Micromobility::U-Rack Bicycle Parking':   '16 Bicycle and Micromobility Management/U-Rack Bicycle Parking/1.glb',
+      '16 Bicycle & Micromobility::Organized Scooter/Micromobility Parking':'16 Bicycle and Micromobility Management/Organized Scooter Micromobility Parking Zones/1.glb',
+      '16 Bicycle & Micromobility::Bicycle Repair Station with Air Pump': '16 Bicycle and Micromobility Management/Bicycle Repair Stations with Air Pumps/1.glb',
+      '16 Bicycle & Micromobility::Speed Calming Measures':        '16 Bicycle and Micromobility Management/Speed Calming Measures/1.glb',
 
       /* ── 17 Public Restrooms ── */
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำขนาดเล็กแยกเพศแบบแยกห้อง':             '17 Public Restrooms/Small Gender-separated Single-stall Restrooms/1.glb',
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำขนาดกลาง แยกเพศ เพศละ 2 ห้อง':         '17 Public Restrooms/Medium-sized Gender-separated Restrooms 2 Stalls per Gender/1.glb',
-      '17 ห้องน้ำสาธารณะ::ห้องน้ำใหญ่สุดพร้อมห้องอาบน้ำ':               '17 Public Restrooms/Large Restroom Facilities with Showers/1.glb',
-      '17 ห้องน้ำสาธารณะ::จุดล้างมือ–ล้างเท้าด้านนอก':                   '17 Public Restrooms/Exterior Hand and Foot Washing Stations/1.glb',
+      '17 Public Restrooms::Small Gender-separated Restroom':             '17 Public Restrooms/Small Gender-separated Single-stall Restrooms/1.glb',
+      '17 Public Restrooms::Medium Restroom – 2 Stalls per Gender':         '17 Public Restrooms/Medium-sized Gender-separated Restrooms 2 Stalls per Gender/1.glb',
+      '17 Public Restrooms::Large Restroom with Showers':               '17 Public Restrooms/Large Restroom Facilities with Showers/1.glb',
+      '17 Public Restrooms::Exterior Hand & Foot Wash Station':                   '17 Public Restrooms/Exterior Hand and Foot Washing Stations/1.glb',
 
-      /* ── 18 คน ── */
-      '18 คน::คน 01': '18 People/01/1.glb',
-      '18 คน::คน 02': '18 People/02/1.glb',
-      '18 คน::คน 03': '18 People/03/1.glb',
-      '18 คน::คน 04': '18 People/04/1.glb',
-      '18 คน::คน 05': '18 People/05/1.glb',
+      /* ── 18 People ── */
+      '18 People::Person 01': '18 People/01/1.glb',
+      '18 People::Person 02': '18 People/02/1.glb',
+      '18 People::Person 03': '18 People/03/1.glb',
+      '18 People::Person 04': '18 People/04/1.glb',
+      '18 People::Person 05': '18 People/05/1.glb',
     };
 
     /* ── ทำโมเดลทุกชิ้นเป็นสีเทาอ่อน พร้อม shading และ shadow ที่ดี ──
@@ -1259,7 +1258,7 @@
 
       /* loading spinner + error badge */
       const spn=document.createElement('div'); spn.className='card-spinner'; card.appendChild(spn);
-      const err=document.createElement('div'); err.className='card-err'; err.textContent='⚠ โหลดไม่ได้ (แตะเพื่อลองใหม่)'; card.appendChild(err);
+      const err=document.createElement('div'); err.className='card-err'; err.textContent='⚠ Failed to load (tap to retry)'; card.appendChild(err);
 
       card.addEventListener('click',()=>{
         if(card.classList.contains('loading')) return; // รอโหลดก่อน
@@ -1468,16 +1467,16 @@
     document.getElementById('btn_submit').addEventListener('click',async()=>{
       const btn=document.getElementById('btn_submit'),orig=btn.textContent;
       try{
-        if(totalPlaced===0){alert('กรุณาวางวัตถุก่อนส่ง');return;}
+        if(totalPlaced===0){alert('Please place at least one object before submitting');return;}
         const info=document.getElementById('additionalInfo').value.trim();
-        btn.textContent='⏳ กำลังประมวลผล...'; btn.disabled=true;
+        btn.textContent='⏳ Processing...'; btn.disabled=true;
         const url=await uploadToSupabase(dataURLtoBlob(capturePNG()));
-        btn.textContent='⏳ กำลังบันทึกข้อมูล...';
+        btn.textContent='⏳ Saving data...';
         await logToGoogleSheets(url,info);
-        btn.textContent='✔ เสร็จสิ้น!';
+        btn.textContent='✔ Done!';
         setTimeout(()=>{location.href='gallery.html';},1000);
       }catch(err){
-        console.error(err); alert('เกิดข้อผิดพลาด: '+err.message);
+        console.error(err); alert('Error: '+err.message);
         btn.textContent=orig; btn.disabled=false;
       }
     });
