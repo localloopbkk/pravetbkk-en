@@ -462,14 +462,12 @@
       const sf = (gridSize * boxSize / Math.max(size.x, size.y)) * 5 * 2 * 20;
       city.scale.setScalar(sf);
 
-      // ── วางโมเดลให้ก้นโมเดลอยู่ใต้กริด z=0 แล้วเลื่อนลง 15% ของความสูงโมเดล ──
+      // ── วางโมเดลให้ก้นโมเดลอยู่ใต้กริด z=0 พอดี ──
       const modelBottom = box.min.z * sf;
-      const modelHeight = size.z * sf;
-      const offsetDown = modelHeight * 0.15;
       city.position.set(
         -center.x * sf,
         -center.y * sf,
-        -modelBottom - offsetDown
+        -modelBottom
       );
       scene.add(city);
 
